@@ -23,5 +23,7 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "eslint.run": "onType",
+
   "prettier.ignorePath": ".gitignore" // Don't run prettier for files listed in .gitignore
 }
