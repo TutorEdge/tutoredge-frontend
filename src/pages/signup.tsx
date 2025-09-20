@@ -8,21 +8,42 @@ const App = () => {
   const AuthLayout = ({ children, title, subtitle, image, imagePosition = 'right' }) => (
     <div className="min-h-screen p-4 sm:p-8 flex items-center justify-center bg-gray-100 dark:bg-gray-900 font-sans text-gray-800 dark:text-gray-200">
       <div className="w-full max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
-        {imagePosition === 'left' && image && (
-          <div className="md:w-1/2 p-8 md:p-12 flex items-center justify-center bg-blue-50 dark:bg-blue-900/50">
-            <div className="w-full h-full object-contain">
-              {image}
-            </div>
+        {/* Logo and page content */}
+        <div className="md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center relative">
+          {/* Logo at the top left corner */}
+          <div className="absolute top-6 left-6 flex items-center space-x-2 text-blue-600 dark:text-blue-400">
+            {/* You can replace this SVG with your logo */}
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 6.253v13m0-13C10.832 5.484 9.49 5 8 5a6 6 0 000 12c-1.892 0-3.666-.358-5-1"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 6.253v13m0-13C13.168 5.484 14.51 5 16 5a6 6 0 010 12c1.892 0 3.666-.358 5-1"
+              />
+            </svg>
+            <span className="text-xl font-semifold">tutor-edge</span>
           </div>
-        )}
-        <div className="md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center">
-          <div className="mb-8">
+
+          <div className="mt-12">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{title}</h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">{subtitle}</p>
           </div>
           {children}
         </div>
-        {imagePosition === 'right' && image && (
+        {/* Image side */}
+        {image && (
           <div className="md:w-1/2 p-8 md:p-12 flex items-center justify-center bg-blue-50 dark:bg-blue-900/50">
             <div className="w-full h-full object-contain">
               {image}
@@ -41,13 +62,13 @@ const App = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log('Login attempt:', { email, password, rememberMe });
-      alert('Login attempt in console!');
+      // In a real app, this would be an API call
     };
 
     return (
       <AuthLayout
         title="Login"
-        subtitle="Log in to your tutor-edge account"
+        subtitle="Log in to your Tutor account"
         image={<LoginImage />}
       >
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -141,7 +162,7 @@ const App = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log('Signup attempt:', { name, email, password, terms });
-      alert('Signup attempt in console!');
+      // In a real app, this would be an API call
       if (terms) {
         setCurrentPage('verify');
       }
@@ -150,7 +171,7 @@ const App = () => {
     return (
       <AuthLayout
         title="Sign up"
-        subtitle="Sign up for a tutor-edge account"
+        subtitle="Sign up for a Tutor account"
         image={<LoginImage />}
       >
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -222,7 +243,7 @@ const App = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log('Verification code:', code);
-      alert('Verification code sent! In a real app, this would verify the code and redirect.');
+      // In a real app, this would verify the code and redirect
     };
 
     return (
@@ -262,7 +283,6 @@ const App = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log('Forgot password request for:', email);
-      alert('Forgot password link sent to your email!');
       setCurrentPage('setPassword');
     };
 
@@ -311,7 +331,6 @@ const App = () => {
         return;
       }
       console.log('New password set:', password);
-      alert('Password has been reset successfully!');
       setCurrentPage('login');
     };
 
