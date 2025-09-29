@@ -9,6 +9,7 @@ const mathsCourses = [
     title: 'Abacus',
     imageUrl: '/images/abacusImage.png',
   },
+
   {
     title: 'Vedic Maths',
     imageUrl: '/images/VedicMathsImage.png',

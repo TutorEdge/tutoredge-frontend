@@ -21,6 +21,7 @@ const stepsData = [
     icon: CreditCard,
     title: 'Pay and Start',
     description: 'Use UrbanPro SecurePay to pay and start your Classes.',
+    description: 'Use TutorEdge SecurePay to pay and start your Classes.',
   },
 ];
 
