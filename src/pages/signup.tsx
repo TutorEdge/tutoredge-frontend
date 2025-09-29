@@ -1,5 +1,12 @@
-<<<<<<< HEAD
+import React from 'react';
 
-=======
+const SignupPage = () => {
+  return (
+    <div className="mx-auto max-w-xl p-6">
+      <h1 className="mb-4 text-2xl font-bold">Sign up</h1>
+      <p>Signup page placeholder.</p>
+    </div>
+  );
+};
 
->>>>>>> 0c41f83b3cd202e4732cbbf2b2568e4aba0b624a
+export default SignupPage;

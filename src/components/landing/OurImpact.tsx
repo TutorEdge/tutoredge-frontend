@@ -1,5 +1,4 @@
 import { Globe, MessageSquare, Signal, Video } from 'lucide-react';
-import { Globe, Video } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -17,15 +16,12 @@ const statsData = [
 
 const featuresData = [
   { text: 'Short animated videos', icon: Video, className: 'top-1/4 left-1/4' },
-<<<<<<< HEAD
   { text: 'Daily LIVE classes', icon: Signal, className: 'top-1/2 right-0' },
   {
     text: 'Unlimited doubt solving',
     icon: MessageSquare,
     className: 'bottom-1/4 left-1/2',
   },
-=======
->>>>>>> 0c41f83b3cd202e4732cbbf2b2568e4aba0b624a
 ];
 
 const avatarsData = [
