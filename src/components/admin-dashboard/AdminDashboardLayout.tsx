@@ -1,13 +1,16 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import AdminSidebar from './AdminSidebar';
 
-const AdminDashboardLayout: React.FC = () => {
+interface AdminDashboardLayoutProps {
+  children: React.ReactNode;
+}
+
+const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({ children }) => {
   return (
-    <div className="admin-dashboard-layout">
+    <div className="flex h-screen bg-gray-50">
       <AdminSidebar />
-      <main className="admin-main-content">
-        <Outlet />
+      <main className="flex-1 overflow-auto p-6">
+        {children}
       </main>
     </div>
   );
