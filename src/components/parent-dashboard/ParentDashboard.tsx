@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import AttendanceDonut from '@/components/student-dashboard/AttendanceDonut';
-import MarksChart from '@/components/student-dashboard/MarksChart';
-import TestsComparison from '@/components/student-dashboard/TestsComparison';
-import StudentDashboardLayout from '@/layouts/StudentDashboardLayout';
+import AttendanceDonut from '@/components/parent-dashboard/AttendanceDonut';
+import MarksChart from '@/components/parent-dashboard/MarksChart';
+import TestsComparison from '@/components/parent-dashboard/TestsComparison';
+import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
 
-export default function StudentDashboardPage() {
+export default function ParentDashboard() {
   return (
-    <StudentDashboardLayout>
+    <ParentDashboardLayout>
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Welcome back</h1>
         <p className="text-gray-600">
@@ -37,7 +37,7 @@ export default function StudentDashboardPage() {
           </div>
           <div className="text-3xl font-bold">2</div>
           <Link
-            href="/student/assignments"
+            href="/parent/assignments"
             className="mt-3 inline-block text-sm font-semibold text-blue-700"
           >
             View assignments
@@ -50,7 +50,7 @@ export default function StudentDashboardPage() {
           </div>
           <div className="text-lg font-medium">Next due on 10 Oct</div>
           <Link
-            href="/student/payments"
+            href="/parent/payments"
             className="mt-3 inline-block text-sm font-semibold text-blue-700"
           >
             Manage
@@ -88,6 +88,6 @@ export default function StudentDashboardPage() {
           ]}
         />
       </div>
-    </StudentDashboardLayout>
+    </ParentDashboardLayout>
   );
 }

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-import StudentDashboardLayout from '@/layouts/StudentDashboardLayout';
+import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
 
 export default function PaymentMethodsPage() {
   const cards: Array<{ brand: string; last4: string; exp: string }> = [];
@@ -20,12 +20,12 @@ export default function PaymentMethodsPage() {
   };
 
   return (
-    <StudentDashboardLayout>
+    <ParentDashboardLayout>
       <div className="mb-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold">Payment Methods</h1>
         <div className="flex gap-2">
           <Link
-            href="/student/payment-methods/add-card"
+            href="/parent/payment-methods/add-card"
             className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white"
           >
             Add Card
@@ -94,6 +94,6 @@ export default function PaymentMethodsPage() {
           </div>
         </div>
       )}
-    </StudentDashboardLayout>
+    </ParentDashboardLayout>
   );
 }

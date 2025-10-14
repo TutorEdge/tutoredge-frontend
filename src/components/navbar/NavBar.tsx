@@ -36,10 +36,10 @@ const NavBar = () => {
         </nav>
         <div className="flex gap-2">
           <Link
-            href="/student/dashboard"
-            className="flex h-10 items-center rounded-xl bg-[#f0f2f4] px-4 text-sm font-bold leading-normal tracking-[0.015em] text-[#111518] hover:bg-[#e7eaed]"
+            href="/parent/dashboard"
+            className="flex h-10 items-center rounded-xl bg-primary px-4 text-sm font-bold leading-normal tracking-[0.015em] text-white hover:opacity-90"
           >
-            Student Dashboard
+            Parent Dashboard
           </Link>
           <button className="h-10 rounded-xl bg-primary px-4 text-sm font-bold leading-normal tracking-[0.015em] text-white">
             Find a Tutor
