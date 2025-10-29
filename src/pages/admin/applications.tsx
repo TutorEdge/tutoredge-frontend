@@ -1,14 +1,14 @@
 import React from 'react';
 
-import AdminDashboardHomePage from '@/components/admin-dashboard/AdminDashboardHomePage';
 import AdminDashboardLayout from '@/components/admin-dashboard/AdminDashboardLayout';
+import TutorApplicationsPage from '@/components/admin-dashboard/TutorApplicationsPage';
 
-const AdminDashboard = () => {
+const Applications = () => {
   return (
     <AdminDashboardLayout>
-      <AdminDashboardHomePage />
+      <TutorApplicationsPage />
     </AdminDashboardLayout>
   );
 };
 
-export default AdminDashboard;
+export default Applications;

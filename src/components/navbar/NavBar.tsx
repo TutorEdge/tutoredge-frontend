@@ -1,46 +1,94 @@
+import { CircleUserRound } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react'; // Keep useState for simulation for now
 
-// Data for navigation links
 const navLinks = [
   { href: '/subjects', label: 'Subjects' },
   { href: '/how-it-works', label: 'How it Works' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/resources', label: 'Resources' },
 ];
 
 const NavBar = () => {
+  // --- FIX ---
+  // Removed the unused setter functions (setIsLoggedIn, setUserRole)
+  // In a real app, you would likely get these values from a context or global state
+  const [isLoggedIn] = useState(false); // Simulating not logged in
+  const [userRole] = useState<'tutor' | 'parent' | 'admin'>('tutor'); // Example role
+
+  const getDashboardUrl = () => {
+    switch (userRole) {
+      case 'tutor':
+        return '/tutor/dashboard';
+      case 'parent':
+        return '/parent/dashboard';
+      case 'admin':
+        return '/admin/dashboard';
+      default:
+        return '/';
+    }
+  };
+
   return (
-    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f4] px-10 py-3">
-      {/* 2. Replace the SVG and h2 with the Image component */}
+    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray-200 px-4 py-3 sm:px-10">
       <Link href="/" className="flex items-center">
         <Image
-          src="/images/logo.png" // Path from the public folder
-          alt="TutorEdge Logo" // Important for accessibility
-          width={150} // The width of your logo
-          height={40} // The height of your logo
+          src="/images/logo.png"
+          alt="TutorEdge Logo"
+          width={150}
+          height={40}
+          priority
         />
       </Link>
 
-      <div className="flex flex-1 items-center justify-end gap-8">
-        <nav className="hidden items-center gap-9 md:flex">
+      <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
+        <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-[#111518] transition-colors hover:text-[#177ccf]"
+              className="text-sm font-medium text-gray-800 transition-colors hover:text-blue-600"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="flex gap-2">
-          <button className="h-10 rounded-xl bg-primary px-4 text-sm font-bold leading-normal tracking-[0.015em] text-white">
-            Find a Tutor
-          </button>
-          <button className="h-10 rounded-xl bg-[#f0f2f4] px-4 text-sm font-bold leading-normal tracking-[0.015em] text-[#111518]">
-            Become a Tutor
-          </button>
+
+        <div className="hidden h-6 w-px bg-gray-200 md:block" />
+
+        <div className="flex items-center gap-2">
+          {isLoggedIn ? (
+            // Logged In State: Show profile icon linking to dashboard
+            <Link href={getDashboardUrl()}>
+              <button
+                className="flex size-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200"
+                aria-label="Dashboard"
+              >
+                <CircleUserRound size={24} />
+              </button>
+            </Link>
+          ) : (
+            // Logged Out State: Show CTA buttons
+            <>
+              <Link href="/find-a-tutor">
+                <button className="h-10 rounded-xl bg-primary px-4 text-sm font-bold text-white transition-colors hover:bg-[#1262a6]">
+                  Find a Tutor
+                </button>
+              </Link>
+              <Link href="/become-a-tutor">
+                <button className="hidden h-10 rounded-xl bg-gray-100 px-4 text-sm font-bold text-gray-800 transition-colors hover:bg-gray-200 sm:block">
+                  Become a Tutor
+                </button>
+              </Link>
+              <Link href="/login">
+                {' '}
+                {/* Changed from /signin to /login */}
+                <button className="hidden h-10 rounded-xl bg-black px-4 text-sm font-bold text-white transition-colors hover:bg-gray-700 sm:block">
+                  Login
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

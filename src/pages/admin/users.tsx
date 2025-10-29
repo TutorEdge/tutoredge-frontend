@@ -1,14 +1,14 @@
 import React from 'react';
 
-import AdminDashboardHomePage from '@/components/admin-dashboard/AdminDashboardHomePage';
 import AdminDashboardLayout from '@/components/admin-dashboard/AdminDashboardLayout';
+import UserManagementPage from '@/components/admin-dashboard/UserManagementPage';
 
-const AdminDashboard = () => {
+const Users = () => {
   return (
     <AdminDashboardLayout>
-      <AdminDashboardHomePage />
+      <UserManagementPage />
     </AdminDashboardLayout>
   );
 };
 
-export default AdminDashboard;
+export default Users;

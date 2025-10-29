@@ -1,14 +1,14 @@
 import React from 'react';
 
-import AdminDashboardHomePage from '@/components/admin-dashboard/AdminDashboardHomePage';
 import AdminDashboardLayout from '@/components/admin-dashboard/AdminDashboardLayout';
+import PaymentLogsPage from '@/components/admin-dashboard/PaymentLogsPage';
 
-const AdminDashboard = () => {
+const Payments = () => {
   return (
     <AdminDashboardLayout>
-      <AdminDashboardHomePage />
+      <PaymentLogsPage />
     </AdminDashboardLayout>
   );
 };
 
-export default AdminDashboard;
+export default Payments;

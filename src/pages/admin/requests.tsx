@@ -1,14 +1,14 @@
 import React from 'react';
 
-import AdminDashboardHomePage from '@/components/admin-dashboard/AdminDashboardHomePage';
 import AdminDashboardLayout from '@/components/admin-dashboard/AdminDashboardLayout';
+import ParentRequestsPage from '@/components/admin-dashboard/ParentRequestsPage';
 
-const AdminDashboard = () => {
+const Requests = () => {
   return (
     <AdminDashboardLayout>
-      <AdminDashboardHomePage />
+      <ParentRequestsPage />
     </AdminDashboardLayout>
   );
 };
 
-export default AdminDashboard;
+export default Requests;
