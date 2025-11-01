@@ -1,7 +1,8 @@
 import { CircleUserRound } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react'; // Keep useState for simulation for now
+
+import { useAuthStore } from '@/stores/useAuthStore';
 
 const navLinks = [
   { href: '/subjects', label: 'Subjects' },
@@ -10,11 +11,12 @@ const navLinks = [
 ];
 
 const NavBar = () => {
-  // --- FIX ---
-  // Removed the unused setter functions (setIsLoggedIn, setUserRole)
-  // In a real app, you would likely get these values from a context or global state
-  const [isLoggedIn] = useState(false); // Simulating not logged in
-  const [userRole] = useState<'tutor' | 'parent' | 'admin'>('tutor'); // Example role
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  // Get the whole user object first
+  const user = useAuthStore((state) => state.user);
+
+  // Safely get the role from the user object (it will be null if logged out)
+  const userRole = user ? user.role : null;
 
   const getDashboardUrl = () => {
     switch (userRole) {
