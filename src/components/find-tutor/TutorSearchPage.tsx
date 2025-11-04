@@ -4,8 +4,8 @@ import TutorCard from './TutorCard';
 
 const MOCK_TUTORS = [
   {
-    id: 'ananya',
-    name: 'Ananya Gupta',
+    id: 'rahul',
+    name: 'Rahul Mehta',
     subject: 'Mathematics',
     experienceYears: 6,
     rating: 4.9,
@@ -14,8 +14,8 @@ const MOCK_TUTORS = [
     location: 'Delhi',
   },
   {
-    id: 'rahul',
-    name: 'Rahul Mehta',
+    id: 'ananya',
+    name: 'Ananya Gupta',
     subject: 'Physics',
     experienceYears: 5,
     rating: 4.8,
@@ -24,8 +24,8 @@ const MOCK_TUTORS = [
     location: 'Mumbai',
   },
   {
-    id: 'sneha',
-    name: 'Sneha Iyer',
+    id: 'shreyas',
+    name: 'Shreyas Iyer',
     subject: 'Chemistry',
     experienceYears: 7,
     rating: 4.7,
