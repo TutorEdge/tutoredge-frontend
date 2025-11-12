@@ -1,21 +1,22 @@
-import CourseHighlights from '@/components/landing/CourseHighlights';
-import CoursesForKids from '@/components/landing/CoursesForKids';
-import FeaturedTutors from '@/components/landing/FeaturedTutors';
-import Footer from '@/components/landing/Footer';
-import HeroSection from '@/components/landing/HeroSection';
-import HowItWorks from '@/components/landing/HowItWorks';
-import OurImpact from '@/components/landing/OurImpact';
-import OurOfferings from '@/components/landing/OurOfferings';
-import TutorCTA from '@/components/landing/TutorCTA';
-import NavBar from '@/components/navbar/NavBar';
+import CourseHighlights from "@/components/landing/CourseHighlights";
+import CoursesForKids from "@/components/landing/CoursesForKids";
+import FeaturedTutors from "@/components/landing/FeaturedTutors";
+import Footer from "@/components/landing/Footer";
+import HeroSection from "@/components/landing/HeroSection";
+import HowItWorks from "@/components/landing/HowItWorks";
+import OurImpact from "@/components/landing/OurImpact";
+import OurOfferings from "@/components/landing/OurOfferings";
+import TutorCTA from "@/components/landing/TutorCTA";
+import NavBar from "@/components/navbar/NavBar";
 
 // This data will eventually come from a CMS or your backend API
 const heroData = {
-  title: 'Join Live Online or Offline Classes with the Best Tutors',
+  title:
+    "Learn from Expert Home Tutors – Personalized Classes for Every Student",
   subtitle:
-    'Trusted by 1000+ parents. Safe, verified tutors. Easy demo booking.',
-  ctaText: 'Book a Free Demo',
-  imageUrl: '/images/heroImage.png',
+    "Trusted by 5000+ parents last year. Safe, verified tutors. Book your demo today!",
+  ctaText: "Book a Free Demo",
+  imageUrl: "/images/heroImage.png",
 };
 
 const LandingPage = () => {

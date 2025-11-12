@@ -1,6 +1,6 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 export default function AddCardPage() {
   return (

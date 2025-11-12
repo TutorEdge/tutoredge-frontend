@@ -1,36 +1,36 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
 // --- Data for the Featured Tutors ---
 // In a real project, this data would come from your backend API.
 const tutorsData = [
   {
     id: 1,
-    name: 'Emily Carter',
-    specialty: 'Math Tutor',
-    description: 'Math, 5 years experience, 100+ students',
-    imageUrl: '/images/tutors/tutor-1.jpg', // Placeholder image path
+    name: "Emily Carter",
+    specialty: "Math Tutor",
+    description: "Math, 5 years experience, 100+ students",
+    imageUrl: "/images/tutors/tutor-1.jpg", // Placeholder image path
   },
   {
     id: 2,
-    name: 'Liam Harper',
-    specialty: 'Science Tutor',
-    description: 'Science, 4 years experience, 80+ students',
-    imageUrl: '/images/tutors/tutor-2.jpg',
+    name: "Liam Harper",
+    specialty: "Science Tutor",
+    description: "Science, 4 years experience, 80+ students",
+    imageUrl: "/images/tutors/tutor-2.jpg",
   },
   {
     id: 3,
-    name: 'Ava Bennett',
-    specialty: 'English Tutor',
-    description: 'English, 6 years experience, 120+ students',
-    imageUrl: '/images/tutors/tutor-3.jpg',
+    name: "Ava Bennett",
+    specialty: "English Tutor",
+    description: "English, 6 years experience, 120+ students",
+    imageUrl: "/images/tutors/tutor-3.jpg",
   },
   {
     id: 4,
-    name: 'Owen Foster',
-    specialty: 'History Tutor',
-    description: 'History, 3 years experience, 60+ students',
-    imageUrl: '/images/tutors/tutor-4.jpg',
+    name: "Owen Foster",
+    specialty: "History Tutor",
+    description: "History, 3 years experience, 60+ students",
+    imageUrl: "/images/tutors/tutor-4.jpg",
   },
 ];
 
@@ -55,7 +55,7 @@ const FeaturedTutors = () => {
                 src={tutor.imageUrl}
                 alt={`Photo of ${tutor.name}`}
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
                 className="transition-transform duration-300 group-hover:scale-105"
               />
             </div>

@@ -1,22 +1,22 @@
-import Link from 'next/link';
-import { useState } from 'react';
+import Link from "next/link";
+import { useState } from "react";
 
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 export default function PaymentMethodsPage() {
   const cards: Array<{ brand: string; last4: string; exp: string }> = [];
   const [showUPIModal, setShowUPIModal] = useState(false);
-  const [upiId, setUpiId] = useState('');
+  const [upiId, setUpiId] = useState("");
 
   const handlePayWithUPI = () => {
     if (!upiId.trim()) {
-      alert('Please enter your UPI ID.');
+      alert("Please enter your UPI ID.");
       return;
     }
     // Simulate payment success
     alert(`Payment successful via ${upiId}!`);
     setShowUPIModal(false);
-    setUpiId('');
+    setUpiId("");
   };
 
   return (

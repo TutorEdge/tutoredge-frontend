@@ -1,44 +1,44 @@
-import { Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 // --- Data for the Footer Links ---
 const footerLinkColumns = [
   {
-    title: 'Company',
+    title: "Company",
     links: [
-      { name: 'About us', href: '/about' },
-      { name: 'Contact us', href: '/contact' },
-      { name: 'Vedantu Blog', href: '#' },
-      { name: 'News', href: '/news' },
+      { name: "About us", href: "/about" },
+      { name: "Contact us", href: "/contact" },
+      { name: "Vedantu Blog", href: "#" },
+      { name: "News", href: "/news" },
     ],
   },
   {
-    title: 'Courses',
+    title: "Courses",
     links: [
-      { name: 'CBSE Tuitions', href: '/courses/cbse' },
-      { name: 'ICSE Tuitions', href: '/courses/icse' },
-      { name: 'JEE (Main & Advanced)', href: '/courses/jee' },
-      { name: 'NEET', href: '/courses/neet' },
+      { name: "CBSE Tuitions", href: "/courses/cbse" },
+      { name: "ICSE Tuitions", href: "/courses/icse" },
+      { name: "JEE (Main & Advanced)", href: "/courses/jee" },
+      { name: "NEET", href: "/courses/neet" },
     ],
   },
   {
-    title: 'Offline Centers',
+    title: "Offline Centers",
     links: [
-      { name: 'Noida', href: '/centers/noida' },
-      { name: 'Prayagraj', href: '/centers/prayagraj' },
-      { name: 'Lucknow', href: '/centers/lucknow' },
-      { name: 'Kanpur', href: '/centers/kanpur' },
+      { name: "Noida", href: "/centers/noida" },
+      { name: "Prayagraj", href: "/centers/prayagraj" },
+      { name: "Lucknow", href: "/centers/lucknow" },
+      { name: "Kanpur", href: "/centers/kanpur" },
     ],
   },
 ];
 
 const socialLinks = [
-  { href: '#', icon: Facebook, 'aria-label': 'Facebook' },
-  { href: '#', icon: Linkedin, 'aria-label': 'LinkedIn' },
-  { href: '#', icon: Twitter, 'aria-label': 'Twitter' },
-  { href: '#', icon: Youtube, 'aria-label': 'YouTube' },
+  { href: "#", icon: Facebook, "aria-label": "Facebook" },
+  { href: "#", icon: Linkedin, "aria-label": "LinkedIn" },
+  { href: "#", icon: Twitter, "aria-label": "Twitter" },
+  { href: "#", icon: Youtube, "aria-label": "YouTube" },
 ];
 
 // --- Main Component ---
@@ -107,9 +107,9 @@ const Footer = () => {
               const Icon = social.icon;
               return (
                 <Link
-                  key={social['aria-label']}
+                  key={social["aria-label"]}
                   href={social.href}
-                  aria-label={social['aria-label']}
+                  aria-label={social["aria-label"]}
                   className="text-gray-400 transition-colors hover:text-white"
                 >
                   <Icon className="size-5" />

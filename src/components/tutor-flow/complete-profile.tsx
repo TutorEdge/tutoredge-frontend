@@ -1,5 +1,6 @@
-import { NextPage } from "next";
-import { useState, ChangeEvent, FormEvent } from "react";
+import type { NextPage } from "next";
+import type { ChangeEvent, FormEvent } from "react";
+import { useState } from "react";
 
 type CompleteProfileForm = {
   bio: string;
@@ -20,7 +21,7 @@ const CompleteProfile: NextPage = () => {
   const [image, setImage] = useState<File | null>(null);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value as any }));
@@ -48,47 +49,55 @@ const CompleteProfile: NextPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex justify-center items-center p-6">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
-        <h2 className="text-2xl font-semibold mb-4">Complete Your Profile</h2>
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 p-6">
+      <div className="w-full max-w-2xl rounded-lg bg-white p-8 shadow-md">
+        <h2 className="mb-4 text-2xl font-semibold">Complete Your Profile</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block mb-1 font-medium">Short Bio</label>
+            <label className="mb-1 block font-medium">Short Bio</label>
             <textarea
               name="bio"
               value={form.bio}
               onChange={handleChange}
               placeholder="Write a short professional bio..."
-              className="w-full border rounded-md p-3"
+              className="w-full rounded-md border p-3"
               rows={3}
             />
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Upload Profile Picture</label>
+            <label className="mb-1 block font-medium">
+              Upload Profile Picture
+            </label>
             <input type="file" accept="image/*" onChange={handleFile} />
-            {image && <p className="mt-2 text-sm text-gray-600">{image.name}</p>}
+            {image && (
+              <p className="mt-2 text-sm text-gray-600">{image.name}</p>
+            )}
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Subject Specializations</label>
+            <label className="mb-1 block font-medium">
+              Subject Specializations
+            </label>
             <input
               name="subject"
               value={form.subject}
               onChange={handleChange}
               placeholder="Add subject specializations"
-              className="w-full border p-2 rounded-md"
+              className="w-full rounded-md border p-2"
             />
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Preferred Teaching Method</label>
+            <label className="mb-1 block font-medium">
+              Preferred Teaching Method
+            </label>
             <select
               name="method"
               value={form.method}
               onChange={handleChange}
-              className="w-full border p-2 rounded-md"
+              className="w-full rounded-md border p-2"
             >
               <option value="">Select Method</option>
               <option value="Online">Online</option>
@@ -98,19 +107,21 @@ const CompleteProfile: NextPage = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Certifications & Awards</label>
+            <label className="mb-1 block font-medium">
+              Certifications & Awards
+            </label>
             <textarea
               name="certifications"
               value={form.certifications}
               onChange={handleChange}
               placeholder="Certifications & Awards"
-              className="w-full border rounded-md p-3"
+              className="w-full rounded-md border p-3"
               rows={2}
             />
           </div>
 
           <button
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+            className="w-full rounded-md bg-blue-600 py-2 text-white hover:bg-blue-700"
             type="submit"
           >
             Save Profile

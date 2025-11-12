@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import SchedulePage from '@/components/tutor-dashboard/SchedulePage';
-import TutorDashboardLayout from '@/components/tutor-dashboard/TutorDashboardLayout';
+import SchedulePage from "@/components/tutor-dashboard/SchedulePage";
+import TutorDashboardLayout from "@/components/tutor-dashboard/TutorDashboardLayout";
 
 const Schedule = () => {
   return (

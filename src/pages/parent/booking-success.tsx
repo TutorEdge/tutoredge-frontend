@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const BookingSuccess = dynamic(
-  () => import('@/components/parent-dashboard/booking-success'),
+  () => import("@/components/parent-dashboard/booking-success"),
   { ssr: false },
 );
 

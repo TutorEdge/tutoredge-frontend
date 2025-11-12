@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const Profile = dynamic(() => import('@/components/parent-dashboard/profile'), {
+const Profile = dynamic(() => import("@/components/parent-dashboard/profile"), {
   ssr: false,
 });
 

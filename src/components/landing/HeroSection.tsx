@@ -1,29 +1,29 @@
-import { CreditCard, ShieldCheck, UserCircle, Users } from 'lucide-react';
-import Image from 'next/image';
-import React from 'react';
+import { CreditCard, ShieldCheck, UserCircle, Users } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 const trustBadges = [
   {
     icon: ShieldCheck,
-    text: 'Verified Tutors',
-    colors: 'bg-blue-50 text-blue-800 border-blue-200',
+    text: "Verified Tutors",
+    colors: "bg-blue-50 text-blue-800 border-blue-200",
   },
   {
     icon: CreditCard,
-    text: 'Safe Payments',
-    colors: 'bg-green-50 text-green-800 border-green-200',
+    text: "Safe Payments",
+    colors: "bg-green-50 text-green-800 border-green-200",
   },
   {
     icon: Users,
-    text: '1-on-1 Learning',
-    colors: 'bg-yellow-50 text-yellow-800 border-yellow-200',
+    text: "1-on-1 Learning",
+    colors: "bg-yellow-50 text-yellow-800 border-yellow-200",
   },
   {
     icon: UserCircle,
-    text: 'Interviewed & Approved',
-    colors: 'bg-purple-50 text-purple-800 border-purple-200',
+    text: "Interviewed & Approved",
+    colors: "bg-purple-50 text-purple-800 border-purple-200",
   },
 ];
 
@@ -66,7 +66,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             src={imageUrl}
             alt={title}
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: "cover" }}
             className="rounded-xl"
           />
         </div>

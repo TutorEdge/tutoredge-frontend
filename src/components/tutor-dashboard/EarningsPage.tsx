@@ -1,51 +1,51 @@
-import { Banknote, Hourglass, TrendingUp } from 'lucide-react';
-import React, { useState } from 'react';
+import { Banknote, Hourglass, TrendingUp } from "lucide-react";
+import React, { useState } from "react";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 // --- Mock Data ---
 const statsCards = [
-  { title: 'Earnings (This Month)', value: '₹12,500', icon: TrendingUp },
-  { title: 'Pending Payout', value: '₹3,200', icon: Hourglass },
-  { title: 'Lifetime Earnings', value: '₹1,45,700', icon: Banknote },
+  { title: "Earnings (This Month)", value: "₹12,500", icon: TrendingUp },
+  { title: "Pending Payout", value: "₹3,200", icon: Hourglass },
+  { title: "Lifetime Earnings", value: "₹1,45,700", icon: Banknote },
 ];
 
 const mockPayouts = [
-  { id: 1, date: 'Sep 5, 2025', amount: '₹10,000', status: 'Paid' },
-  { id: 2, date: 'Aug 5, 2025', amount: '₹8,500', status: 'Paid' },
-  { id: 3, date: 'Jul 5, 2025', amount: '₹11,200', status: 'Paid' },
+  { id: 1, date: "Sep 5, 2025", amount: "₹10,000", status: "Paid" },
+  { id: 2, date: "Aug 5, 2025", amount: "₹8,500", status: "Paid" },
+  { id: 3, date: "Jul 5, 2025", amount: "₹11,200", status: "Paid" },
 ];
 
 const mockEarningDetails = [
   {
     id: 1,
-    date: 'Sep 27, 2025',
-    student: 'Ethan Carter',
-    class: 'Calculus I (1hr)',
-    amount: '₹500',
+    date: "Sep 27, 2025",
+    student: "Ethan Carter",
+    class: "Calculus I (1hr)",
+    amount: "₹500",
   },
   {
     id: 2,
-    date: 'Sep 26, 2025',
-    student: 'Olivia Bennett',
-    class: 'Chemistry (1hr)',
-    amount: '₹450',
+    date: "Sep 26, 2025",
+    student: "Olivia Bennett",
+    class: "Chemistry (1hr)",
+    amount: "₹450",
   },
   {
     id: 3,
-    date: 'Sep 26, 2025',
-    student: 'Noah Thompson',
-    class: 'Physics II (1hr)',
-    amount: '₹500',
+    date: "Sep 26, 2025",
+    student: "Noah Thompson",
+    class: "Physics II (1hr)",
+    amount: "₹500",
   },
 ];
 
 const StatusPill = ({ status }: { status: string }) => (
   <span
     className={`rounded-full px-3 py-1 text-xs font-medium ${
-      status === 'Paid'
-        ? 'bg-green-100 text-green-800'
-        : 'bg-yellow-100 text-yellow-800'
+      status === "Paid"
+        ? "bg-green-100 text-green-800"
+        : "bg-yellow-100 text-yellow-800"
     }`}
   >
     {status}
@@ -53,8 +53,8 @@ const StatusPill = ({ status }: { status: string }) => (
 );
 
 const EarningsPage = () => {
-  const [activeTab, setActiveTab] = useState('Payout History');
-  const tabs = ['Payout History', 'Earning Breakdown'];
+  const [activeTab, setActiveTab] = useState("Payout History");
+  const tabs = ["Payout History", "Earning Breakdown"];
 
   return (
     <div className="flex flex-col gap-6">
@@ -98,8 +98,8 @@ const EarningsPage = () => {
               onClick={() => setActiveTab(tab)}
               className={`whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium ${
                 activeTab === tab
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:text-gray-700"
               }`}
             >
               {tab}
@@ -110,7 +110,7 @@ const EarningsPage = () => {
 
       {/* Tab Content */}
       <div className="overflow-hidden rounded-xl border bg-white shadow-sm">
-        {activeTab === 'Payout History' && (
+        {activeTab === "Payout History" && (
           <table className="w-full text-sm">
             <thead className="bg-gray-50 text-left">
               <tr>
@@ -134,7 +134,7 @@ const EarningsPage = () => {
             </tbody>
           </table>
         )}
-        {activeTab === 'Earning Breakdown' && (
+        {activeTab === "Earning Breakdown" && (
           <table className="w-full text-sm">
             <thead className="bg-gray-50 text-left">
               <tr>

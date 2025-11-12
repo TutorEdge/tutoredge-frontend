@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const AddCard = dynamic(
-  () => import('@/components/parent-dashboard/add-card'),
+  () => import("@/components/parent-dashboard/add-card"),
   { ssr: false },
 );
 

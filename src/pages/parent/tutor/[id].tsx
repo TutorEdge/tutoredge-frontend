@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const TutorDetail = dynamic(
-  () => import('@/components/parent-dashboard/[id]'),
+  () => import("@/components/parent-dashboard/[id]"),
   { ssr: false },
 );
 

@@ -37,34 +37,34 @@ const CoursesForKids = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-16 px-6">
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-extrabold text-blue-700 mb-3">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white px-6 py-16">
+      <div className="mb-12 text-center">
+        <h1 className="mb-3 text-5xl font-extrabold text-blue-700">
           🌈 Courses for Kids
         </h1>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        <p className="mx-auto max-w-2xl text-lg text-gray-600">
           Fun-filled learning experiences designed to build strong foundations
           for young learners.
         </p>
       </div>
 
-      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 justify-center">
+      <div className="grid justify-center gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {courses.map((course, idx) => (
           <div
             key={idx}
-            className={`relative bg-gradient-to-br ${course.color} rounded-3xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 hover:shadow-2xl`}
+            className={`relative bg-gradient-to-br ${course.color} overflow-hidden rounded-3xl shadow-lg transition duration-300 hover:scale-105 hover:shadow-2xl`}
           >
-            <div className="p-6 text-white flex flex-col items-center text-center">
-              <div className="w-24 h-24 bg-white bg-opacity-30 rounded-full flex items-center justify-center mb-4">
+            <div className="flex flex-col items-center p-6 text-center text-white">
+              <div className="mb-4 flex size-24 items-center justify-center rounded-full bg-white bg-opacity-30">
                 <span className="text-5xl">{course.title.split(" ")[0]}</span>
               </div>
-              <h2 className="text-xl font-bold mb-2">{course.title}</h2>
-              <p className="text-sm mb-5">{course.desc}</p>
+              <h2 className="mb-2 text-xl font-bold">{course.title}</h2>
+              <p className="mb-5 text-sm">{course.desc}</p>
 
               {/* 🧭 Explore button navigates to the route */}
               <button
                 onClick={() => router.push(course.route)}
-                className="bg-white text-blue-700 font-semibold px-4 py-2 rounded-xl hover:bg-blue-100 transition"
+                className="rounded-xl bg-white px-4 py-2 font-semibold text-blue-700 transition hover:bg-blue-100"
               >
                 Explore →
               </button>

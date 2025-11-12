@@ -1,48 +1,48 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from "react";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 // --- Mock Data (Updated with mode and location) ---
 const mockRequestsData = [
   {
     id: 1,
-    title: 'Looking for a Grade 10 Math tutor',
-    subject: 'Math',
-    grade: 'Grade 10',
+    title: "Looking for a Grade 10 Math tutor",
+    subject: "Math",
+    grade: "Grade 10",
     description:
-      'Parent is seeking a tutor for their child in Grade 10 Math...',
-    mode: 'Online',
-    location: 'Any',
+      "Parent is seeking a tutor for their child in Grade 10 Math...",
+    mode: "Online",
+    location: "Any",
   },
   {
     id: 2,
-    title: 'Seeking a Grade 11 Chemistry tutor',
-    subject: 'Chemistry',
-    grade: 'Grade 11',
+    title: "Seeking a Grade 11 Chemistry tutor",
+    subject: "Chemistry",
+    grade: "Grade 11",
     description:
-      'Parent is looking for a tutor for their child in Grade 11 Chemistry...',
-    mode: 'Offline',
-    location: 'Lucknow',
+      "Parent is looking for a tutor for their child in Grade 11 Chemistry...",
+    mode: "Offline",
+    location: "Lucknow",
   },
   {
     id: 3,
-    title: 'Need a Grade 9 English tutor',
-    subject: 'English',
-    grade: 'Grade 9',
+    title: "Need a Grade 9 English tutor",
+    subject: "English",
+    grade: "Grade 9",
     description:
-      'Parent is searching for a tutor for their child in Grade 9 English...',
-    mode: 'Online',
-    location: 'Any',
+      "Parent is searching for a tutor for their child in Grade 9 English...",
+    mode: "Online",
+    location: "Any",
   },
   {
     id: 4,
-    title: 'Searching for a Grade 12 Physics tutor',
-    subject: 'Physics',
-    grade: 'Grade 12',
+    title: "Searching for a Grade 12 Physics tutor",
+    subject: "Physics",
+    grade: "Grade 12",
     description:
-      'Parent is seeking a tutor for their child in Grade 12 Physics...',
-    mode: 'Offline',
-    location: 'Kanpur',
+      "Parent is seeking a tutor for their child in Grade 12 Physics...",
+    mode: "Offline",
+    location: "Kanpur",
   },
 ];
 
@@ -64,11 +64,11 @@ const RequestCard = ({
           {request.grade}
         </span>
         <span
-          className={`rounded-full px-3 py-1 text-xs font-medium ${request.mode === 'Online' ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800'}`}
+          className={`rounded-full px-3 py-1 text-xs font-medium ${request.mode === "Online" ? "bg-green-100 text-green-800" : "bg-purple-100 text-purple-800"}`}
         >
           {request.mode}
         </span>
-        {request.mode === 'Offline' && (
+        {request.mode === "Offline" && (
           <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
             {request.location}
           </span>
@@ -89,22 +89,22 @@ const RequestCard = ({
 // --- Main Page Component ---
 const FindStudentPage = () => {
   // 1. Added new state for mode and location filters
-  const [subjectFilter, setSubjectFilter] = useState('All');
-  const [gradeFilter, setGradeFilter] = useState('All');
-  const [modeFilter, setModeFilter] = useState('All');
-  const [locationFilter, setLocationFilter] = useState('All');
+  const [subjectFilter, setSubjectFilter] = useState("All");
+  const [gradeFilter, setGradeFilter] = useState("All");
+  const [modeFilter, setModeFilter] = useState("All");
+  const [locationFilter, setLocationFilter] = useState("All");
 
   // 2. Updated filtering logic to include new filters
   const filteredRequests = useMemo(() => {
     return mockRequestsData.filter((req) => {
       const subjectMatch =
-        subjectFilter === 'All' || req.subject === subjectFilter;
-      const gradeMatch = gradeFilter === 'All' || req.grade === gradeFilter;
-      const modeMatch = modeFilter === 'All' || req.mode === modeFilter;
+        subjectFilter === "All" || req.subject === subjectFilter;
+      const gradeMatch = gradeFilter === "All" || req.grade === gradeFilter;
+      const modeMatch = modeFilter === "All" || req.mode === modeFilter;
       // Location filter only applies if the mode is 'Offline'
       const locationMatch =
-        modeFilter !== 'Offline' ||
-        locationFilter === 'All' ||
+        modeFilter !== "Offline" ||
+        locationFilter === "All" ||
         req.location === locationFilter;
 
       return subjectMatch && gradeMatch && modeMatch && locationMatch;
@@ -182,7 +182,7 @@ const FindStudentPage = () => {
         </div>
         {/* Location filter is only shown when 'Offline' is selected */}
         <div
-          className={`transition-opacity duration-300 ${modeFilter === 'Offline' ? 'opacity-100' : 'opacity-50'}`}
+          className={`transition-opacity duration-300 ${modeFilter === "Offline" ? "opacity-100" : "opacity-50"}`}
         >
           <label
             htmlFor="location-filter"
@@ -194,7 +194,7 @@ const FindStudentPage = () => {
             id="location-filter"
             value={locationFilter}
             onChange={(e) => setLocationFilter(e.target.value)}
-            disabled={modeFilter !== 'Offline'}
+            disabled={modeFilter !== "Offline"}
             className="mt-1 w-full rounded-md border-gray-300"
           >
             <option>All</option>

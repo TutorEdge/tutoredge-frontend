@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
-import VerifyPhone from "../tutor-flow/verify-phone";
+
+import VerifyPhone from "./verify-phone";
 
 const VerifyPhonePage: NextPage = () => {
   return <VerifyPhone />;

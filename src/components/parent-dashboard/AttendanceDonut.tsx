@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type AttendanceDonutProps = {
   percentage: number; // 0-100
@@ -11,7 +11,7 @@ export default function AttendanceDonut({
   percentage,
   size = 140,
   strokeWidth = 14,
-  title = 'Attendance',
+  title = "Attendance",
 }: AttendanceDonutProps) {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;

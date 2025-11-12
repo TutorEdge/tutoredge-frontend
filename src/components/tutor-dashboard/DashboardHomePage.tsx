@@ -1,24 +1,24 @@
-import React from 'react';
+import React from "react";
 
 // Mock data - in a real app, this would come from your API
 const upcomingSessions = [
   {
-    student: 'Ethan Harper',
-    subject: 'Calculus I',
-    dateTime: 'July 20, 2024, 2:00 PM',
-    status: 'Scheduled',
+    student: "Ethan Harper",
+    subject: "Calculus I",
+    dateTime: "July 20, 2024, 2:00 PM",
+    status: "Scheduled",
   },
   {
-    student: 'Olivia Bennett',
-    subject: 'Organic Chemistry',
-    dateTime: 'July 21, 2024, 10:00 AM',
-    status: 'Scheduled',
+    student: "Olivia Bennett",
+    subject: "Organic Chemistry",
+    dateTime: "July 21, 2024, 10:00 AM",
+    status: "Scheduled",
   },
   {
-    student: 'Noah Thompson',
-    subject: 'Physics II',
-    dateTime: 'July 22, 2024, 4:00 PM',
-    status: 'Scheduled',
+    student: "Noah Thompson",
+    subject: "Physics II",
+    dateTime: "July 22, 2024, 4:00 PM",
+    status: "Scheduled",
   },
 ];
 

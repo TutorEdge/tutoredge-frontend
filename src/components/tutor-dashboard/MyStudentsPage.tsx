@@ -1,22 +1,22 @@
-import { Search } from 'lucide-react';
-import React, { useState } from 'react';
+import { Search } from "lucide-react";
+import React, { useState } from "react";
 
-import StudentCard from './StudentCard';
+import StudentCard from "./StudentCard";
 
 // Mock data updated to remove imageUrl
 export const mockStudentsData = [
-  { id: '1', name: 'Ethan Carter', grade: 'Grade 10' },
-  { id: '2', name: 'Olivia Bennett', grade: 'Grade 11' },
-  { id: '3', name: 'Noah Thompson', grade: 'Grade 9' },
-  { id: '4', name: 'Ava Harper', grade: 'Grade 12' },
-  { id: '5', name: 'Liam Foster', grade: 'Grade 10' },
-  { id: '6', name: 'Isabella Hayes', grade: 'Grade 11' },
-  { id: '7', name: 'Mason Reid', grade: 'Grade 8' },
-  { id: '8', name: 'Sophia Cruz', grade: 'Grade 12' },
+  { id: "1", name: "Ethan Carter", grade: "Grade 10" },
+  { id: "2", name: "Olivia Bennett", grade: "Grade 11" },
+  { id: "3", name: "Noah Thompson", grade: "Grade 9" },
+  { id: "4", name: "Ava Harper", grade: "Grade 12" },
+  { id: "5", name: "Liam Foster", grade: "Grade 10" },
+  { id: "6", name: "Isabella Hayes", grade: "Grade 11" },
+  { id: "7", name: "Mason Reid", grade: "Grade 8" },
+  { id: "8", name: "Sophia Cruz", grade: "Grade 12" },
 ];
 
 const MyStudentsPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredStudents = mockStudentsData.filter((student) =>
     student.name.toLowerCase().includes(searchQuery.toLowerCase()),

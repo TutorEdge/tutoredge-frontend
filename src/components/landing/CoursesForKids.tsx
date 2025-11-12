@@ -1,65 +1,66 @@
-import { BookText, Calculator, Code2, Languages } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import Button from '../ui/Button';
+import { BookText, Calculator, Code2, Languages } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+import Button from "../ui/Button";
 
 const kidsCourses = [
   {
     id: 1,
-    title: 'Spoken English Program',
-    classRange: 'Class 1 - 6',
-    description: 'Master fluency in English speaking',
+    title: "Spoken English Program",
+    classRange: "Class 1 - 6",
+    description: "Master fluency in English speaking",
     icon: BookText,
     colors: {
-      bg: 'bg-rose-50',
-      text: 'text-rose-600',
-      iconBg: 'bg-rose-100',
+      bg: "bg-rose-50",
+      text: "text-rose-600",
+      iconBg: "bg-rose-100",
     },
-    justify: 'md:justify-self-end',
-    link: '/courses/spoken-english',
+    justify: "md:justify-self-end",
+    link: "/courses/spoken-english",
   },
   {
     id: 2,
-    title: 'Learn English',
-    classRange: 'Class LKG - 5',
-    description: 'Level based holistic English Program',
+    title: "Learn English",
+    classRange: "Class LKG - 5",
+    description: "Level based holistic English Program",
     icon: Languages,
     colors: {
-      bg: 'bg-yellow-50',
-      text: 'text-yellow-600',
-      iconBg: 'bg-yellow-100',
+      bg: "bg-yellow-50",
+      text: "text-yellow-600",
+      iconBg: "bg-yellow-100",
     },
-    justify: 'md:justify-self-start',
-    link: '/courses/primary-section',
+    justify: "md:justify-self-start",
+    link: "/courses/primary-section",
   },
   {
     id: 3,
-    title: 'Learn Math',
-    classRange: 'Class 1 to 5',
-    description: 'Turn your child into a Math wizard',
+    title: "Learn Math",
+    classRange: "Class 1 to 5",
+    description: "Turn your child into a Math wizard",
     icon: Calculator,
     colors: {
-      bg: 'bg-blue-50',
-      text: 'text-blue-600',
-      iconBg: 'bg-blue-100',
+      bg: "bg-blue-50",
+      text: "text-blue-600",
+      iconBg: "bg-blue-100",
     },
-    justify: 'md:justify-self-end',
-    link: '/courses/junior-section',
+    justify: "md:justify-self-end",
+    link: "/courses/junior-section",
   },
   {
     id: 4,
-    title: 'Coding Classes',
-    classRange: 'Class 1 - 8',
-    description: 'Learn to build apps and games, be future ready',
+    title: "Coding Classes",
+    classRange: "Class 1 - 8",
+    description: "Learn to build apps and games, be future ready",
     icon: Code2,
     colors: {
-      bg: 'bg-purple-50',
-      text: 'text-purple-600',
-      iconBg: 'bg-purple-100',
+      bg: "bg-purple-50",
+      text: "text-purple-600",
+      iconBg: "bg-purple-100",
     },
-    justify: 'md:justify-self-start',
-    link: '/courses/computer-learning',
+    justify: "md:justify-self-start",
+    link: "/courses/computer-learning",
   },
 ];
 
@@ -79,7 +80,7 @@ const CoursesForKids = () => {
               src="/images/kids-courses-center.png"
               alt="A happy child learning"
               fill
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: "contain" }}
             />
           </div>
         </div>

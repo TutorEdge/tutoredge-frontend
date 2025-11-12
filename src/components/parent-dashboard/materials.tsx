@@ -1,13 +1,13 @@
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 const materials = [
-  { id: 1, name: 'Algebra Basics - PDF', type: 'PDF', status: 'Available' },
-  { id: 2, name: 'Triangles Lecture', type: 'Video', status: 'New' },
+  { id: 1, name: "Algebra Basics - PDF", type: "PDF", status: "Available" },
+  { id: 2, name: "Triangles Lecture", type: "Video", status: "New" },
   {
     id: 3,
-    name: 'Weekly Practice Sheet',
-    type: 'Worksheet',
-    status: 'Available',
+    name: "Weekly Practice Sheet",
+    type: "Worksheet",
+    status: "Available",
   },
 ];
 
@@ -31,7 +31,7 @@ export default function StudentMaterialsPage() {
             <div>{m.type}</div>
             <div>
               <span
-                className={`rounded-md px-2 py-1 ${m.status === 'New' ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-700'}`}
+                className={`rounded-md px-2 py-1 ${m.status === "New" ? "bg-blue-50 text-blue-700" : "bg-gray-100 text-gray-700"}`}
               >
                 {m.status}
               </span>

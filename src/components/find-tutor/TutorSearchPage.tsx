@@ -1,44 +1,44 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
-import TutorCard from './TutorCard';
+import TutorCard from "./TutorCard";
 
 const MOCK_TUTORS = [
   {
-    id: 'rahul',
-    name: 'Rahul Mehta',
-    subject: 'Mathematics',
+    id: "rahul",
+    name: "Rahul Mehta",
+    subject: "Mathematics",
     experienceYears: 6,
     rating: 4.9,
-    avatar: '/images/tutors/tutor-1.jpg',
+    avatar: "/images/tutors/tutor-1.jpg",
     pricePerHour: 600,
-    location: 'Delhi',
+    location: "Delhi",
   },
   {
-    id: 'ananya',
-    name: 'Ananya Gupta',
-    subject: 'Physics',
+    id: "ananya",
+    name: "Ananya Gupta",
+    subject: "Physics",
     experienceYears: 5,
     rating: 4.8,
-    avatar: '/images/tutors/tutor-2.jpg',
+    avatar: "/images/tutors/tutor-2.jpg",
     pricePerHour: 550,
-    location: 'Mumbai',
+    location: "Mumbai",
   },
   {
-    id: 'shreyas',
-    name: 'Shreyas Iyer',
-    subject: 'Chemistry',
+    id: "shreyas",
+    name: "Shreyas Iyer",
+    subject: "Chemistry",
     experienceYears: 7,
     rating: 4.7,
-    avatar: '/images/tutors/tutor-3.jpg',
+    avatar: "/images/tutors/tutor-3.jpg",
     pricePerHour: 500,
-    location: 'Bengaluru',
+    location: "Bengaluru",
   },
 ];
 
 export default function TutorSearchPage() {
-  const [query, setQuery] = useState('');
-  const [subject, setSubject] = useState('');
-  const [city, setCity] = useState('');
+  const [query, setQuery] = useState("");
+  const [subject, setSubject] = useState("");
+  const [city, setCity] = useState("");
   const [minRating, setMinRating] = useState(0);
 
   const filtered = useMemo(() => {
@@ -47,7 +47,7 @@ export default function TutorSearchPage() {
         (!query || t.name.toLowerCase().includes(query.toLowerCase())) &&
         (!subject || t.subject === subject) &&
         (!city ||
-          (t.location || '').toLowerCase().includes(city.toLowerCase())) &&
+          (t.location || "").toLowerCase().includes(city.toLowerCase())) &&
         t.rating >= minRating,
     );
   }, [query, subject, city, minRating]);

@@ -1,9 +1,9 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import AttendanceDonut from '@/components/parent-dashboard/AttendanceDonut';
-import MarksChart from '@/components/parent-dashboard/MarksChart';
-import TestsComparison from '@/components/parent-dashboard/TestsComparison';
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import AttendanceDonut from "@/components/parent-dashboard/AttendanceDonut";
+import MarksChart from "@/components/parent-dashboard/MarksChart";
+import TestsComparison from "@/components/parent-dashboard/TestsComparison";
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 export default function ParentDashboard() {
   return (
@@ -66,11 +66,11 @@ export default function ParentDashboard() {
           <MarksChart
             title="Subject-wise Marks"
             data={[
-              { label: 'Math', value: 88 },
-              { label: 'Sci', value: 76 },
-              { label: 'Eng', value: 91 },
-              { label: 'Hist', value: 72 },
-              { label: 'Geo', value: 84 },
+              { label: "Math", value: 88 },
+              { label: "Sci", value: 76 },
+              { label: "Eng", value: 91 },
+              { label: "Hist", value: 72 },
+              { label: "Geo", value: 84 },
             ]}
           />
         </div>
@@ -80,11 +80,11 @@ export default function ParentDashboard() {
         <TestsComparison
           title="Last 5 Tests: Previous vs Current"
           data={[
-            { label: 'T1', previous: 72, current: 78 },
-            { label: 'T2', previous: 65, current: 74 },
-            { label: 'T3', previous: 80, current: 83 },
-            { label: 'T4', previous: 77, current: 79 },
-            { label: 'T5', previous: 70, current: 86 },
+            { label: "T1", previous: 72, current: 78 },
+            { label: "T2", previous: 65, current: 74 },
+            { label: "T3", previous: 80, current: 83 },
+            { label: "T4", previous: 77, current: 79 },
+            { label: "T5", previous: 70, current: 86 },
           ]}
         />
       </div>

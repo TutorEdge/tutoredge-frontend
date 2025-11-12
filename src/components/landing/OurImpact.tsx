@@ -1,45 +1,45 @@
-import { Globe, MessageSquare, Signal, Video } from 'lucide-react';
-import Image from 'next/image';
-import React from 'react';
+import { Globe, MessageSquare, Signal, Video } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
 // --- Data for the component ---
 const statsData = [
-  { value: '2.1+', unit: 'crore', description: 'hours of LIVE learning' },
-  { value: '10+', unit: 'lakh', description: 'monthly youtube views' },
-  { value: '25+', unit: 'lakh', description: 'doubts resolved on the app' },
+  { value: "2.1+", unit: "crore", description: "hours of LIVE learning" },
+  { value: "10+", unit: "lakh", description: "monthly youtube views" },
+  { value: "25+", unit: "lakh", description: "doubts resolved on the app" },
   {
-    value: '57+',
-    unit: 'countries',
-    description: 'where students take LIVE classes',
+    value: "57+",
+    unit: "countries",
+    description: "where students take LIVE classes",
   },
 ];
 
 const featuresData = [
-  { text: 'Short animated videos', icon: Video, className: 'top-1/4 left-1/4' },
-  { text: 'Daily LIVE classes', icon: Signal, className: 'top-1/2 right-0' },
+  { text: "Short animated videos", icon: Video, className: "top-1/4 left-1/4" },
+  { text: "Daily LIVE classes", icon: Signal, className: "top-1/2 right-0" },
   {
-    text: 'Unlimited doubt solving',
+    text: "Unlimited doubt solving",
     icon: MessageSquare,
-    className: 'bottom-1/4 left-1/2',
+    className: "bottom-1/4 left-1/2",
   },
 ];
 
 const avatarsData = [
   {
-    src: '/images/avatars/avatar-1.jpg',
-    className: 'top-10 right-1/4 h-12 w-12',
+    src: "/images/avatars/avatar-1.jpg",
+    className: "top-10 right-1/4 h-12 w-12",
   },
   {
-    src: '/images/avatars/avatar-2.jpg',
-    className: 'top-1/3 left-10 h-16 w-16',
+    src: "/images/avatars/avatar-2.jpg",
+    className: "top-1/3 left-10 h-16 w-16",
   },
   {
-    src: '/images/avatars/avatar-3.jpg',
-    className: 'top-1/2 left-1/2 h-10 w-10',
+    src: "/images/avatars/avatar-3.jpg",
+    className: "top-1/2 left-1/2 h-10 w-10",
   },
   {
-    src: '/images/avatars/avatar-4.jpg',
-    className: 'bottom-1/4 right-1/4 h-14 w-14',
+    src: "/images/avatars/avatar-4.jpg",
+    className: "bottom-1/4 right-1/4 h-14 w-14",
   },
 ];
 
@@ -54,7 +54,7 @@ const OurImpact = () => {
           src="/images/india-map-dotted-blue.png"
           alt="Dotted world map background"
           fill
-          style={{ objectFit: 'contain' }} // Changed back to 'contain'
+          style={{ objectFit: "contain" }} // Changed back to 'contain'
         />
       </div>
 
@@ -113,7 +113,7 @@ const OurImpact = () => {
                 src={avatar.src}
                 alt="User avatar"
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
           ))}

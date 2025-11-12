@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import ContentLibraryPage from '@/components/tutor-dashboard/ContentLibraryPage';
-import TutorDashboardLayout from '@/components/tutor-dashboard/TutorDashboardLayout';
+import ContentLibraryPage from "@/components/tutor-dashboard/ContentLibraryPage";
+import TutorDashboardLayout from "@/components/tutor-dashboard/TutorDashboardLayout";
 
 const Library = () => {
   return (

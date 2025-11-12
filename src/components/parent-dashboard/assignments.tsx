@@ -1,9 +1,9 @@
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 const assignments = [
-  { id: 1, title: 'Algebra Practice Set', due: '02 Oct', status: 'Pending' },
-  { id: 2, title: 'Reading Comprehension', due: '05 Oct', status: 'Pending' },
-  { id: 3, title: 'Physics Worksheet', due: '07 Oct', status: 'Submitted' },
+  { id: 1, title: "Algebra Practice Set", due: "02 Oct", status: "Pending" },
+  { id: 2, title: "Reading Comprehension", due: "05 Oct", status: "Pending" },
+  { id: 3, title: "Physics Worksheet", due: "07 Oct", status: "Submitted" },
 ];
 
 export default function StudentAssignmentsPage() {
@@ -26,14 +26,14 @@ export default function StudentAssignmentsPage() {
             <div>{a.due}</div>
             <div>
               <span
-                className={`rounded-md px-2 py-1 ${a.status === 'Submitted' ? 'bg-green-50 text-green-700' : 'bg-yellow-50 text-yellow-700'}`}
+                className={`rounded-md px-2 py-1 ${a.status === "Submitted" ? "bg-green-50 text-green-700" : "bg-yellow-50 text-yellow-700"}`}
               >
                 {a.status}
               </span>
             </div>
             <div className="text-right">
               <button className="rounded-md bg-blue-600 px-3 py-1 text-sm font-semibold text-white">
-                {a.status === 'Submitted' ? 'View' : 'Submit'}
+                {a.status === "Submitted" ? "View" : "Submit"}
               </button>
             </div>
           </div>

@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const TutorSearchPage = dynamic(
-  () => import('@/components/find-tutor/TutorSearchPage'),
+  () => import("@/components/find-tutor/TutorSearchPage"),
   { ssr: false },
 );
 

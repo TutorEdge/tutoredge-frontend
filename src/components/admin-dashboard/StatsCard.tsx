@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface StatsCardProps {
   title: string;
@@ -8,12 +8,18 @@ interface StatsCardProps {
   change: string;
 }
 
-const StatsCard: React.FC<StatsCardProps> = ({ title, value, icon: Icon, color, change }) => {
+const StatsCard: React.FC<StatsCardProps> = ({
+  title,
+  value,
+  icon: Icon,
+  color,
+  change,
+}) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
+    <div className="rounded-lg bg-white p-6 shadow">
       <div className="flex items-center">
-        <div className={`p-3 rounded-lg ${color}`}>
-          <Icon className="w-6 h-6 text-white" />
+        <div className={`rounded-lg p-3 ${color}`}>
+          <Icon className="size-6 text-white" />
         </div>
         <div className="ml-4">
           <p className="text-sm font-medium text-gray-600">{title}</p>
@@ -21,7 +27,9 @@ const StatsCard: React.FC<StatsCardProps> = ({ title, value, icon: Icon, color, 
         </div>
       </div>
       <div className="mt-4">
-        <span className="text-sm text-green-600 font-medium">{change} from last month</span>
+        <span className="text-sm font-medium text-green-600">
+          {change} from last month
+        </span>
       </div>
     </div>
   );

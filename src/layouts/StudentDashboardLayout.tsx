@@ -1,22 +1,24 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
 
 type StudentDashboardLayoutProps = {
   children: React.ReactNode;
 };
 
 const navItems = [
-  { href: '/student/dashboard', label: 'Overview' },
-  { href: '/student/tutors', label: 'My Tutors' },
-  { href: '/student/assignments', label: 'Assignments' },
-  { href: '/student/materials', label: 'Study Materials' },
-  { href: '/student/payments', label: 'Payments' },
-  { href: '/student/payment-methods', label: 'Payment Methods' },
-  { href: '/student/profile', label: 'Profile' },
+  { href: "/student/dashboard", label: "Overview" },
+  { href: "/student/tutors", label: "My Tutors" },
+  { href: "/student/assignments", label: "Assignments" },
+  { href: "/student/materials", label: "Study Materials" },
+  { href: "/student/payments", label: "Payments" },
+  { href: "/student/payment-methods", label: "Payment Methods" },
+  { href: "/student/profile", label: "Profile" },
 ];
 
-export default function StudentDashboardLayout({ children }: StudentDashboardLayoutProps) {
+export default function StudentDashboardLayout({
+  children,
+}: StudentDashboardLayoutProps) {
   const router = useRouter();
 
   return (
@@ -32,7 +34,7 @@ export default function StudentDashboardLayout({ children }: StudentDashboardLay
                   key={item.href}
                   href={item.href}
                   className={`block rounded-lg px-4 py-2 text-sm font-medium hover:bg-blue-50 hover:text-blue-700 ${
-                    active ? 'bg-blue-100 text-blue-700' : 'text-gray-700'
+                    active ? "bg-blue-100 text-blue-700" : "text-gray-700"
                   }`}
                 >
                   {item.label}
@@ -43,14 +45,9 @@ export default function StudentDashboardLayout({ children }: StudentDashboardLay
         </aside>
 
         <main className="flex-1 p-6">
-          <div className="mx-auto max-w-6xl">
-            {children}
-          </div>
+          <div className="mx-auto max-w-6xl">{children}</div>
         </main>
       </div>
     </div>
   );
 }
-
-
-

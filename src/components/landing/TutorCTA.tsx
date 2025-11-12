@@ -1,41 +1,41 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 // --- Data for the Image Collage ---
 // We now have a separate object for the big image and an array for the small ones.
 // The z-index classes (z-0, z-20) control which images are behind or in front.
 const bigImage = {
-  src: '/images/tutors/collage-main.jpg',
+  src: "/images/tutors/collage-main.jpg",
 };
 
 const smallImages = [
   // Images BEHIND the main image (z-0)
   {
-    src: '/images/tutors/collage-1.jpg',
-    className: 'h-24 w-24 top-0 left-40 z-0',
+    src: "/images/tutors/collage-1.jpg",
+    className: "h-24 w-24 top-0 left-40 z-0",
   },
   {
-    src: '/images/tutors/collage-2.jpg',
-    className: 'h-20 w-20 top-1/2 left-10 z-0',
+    src: "/images/tutors/collage-2.jpg",
+    className: "h-20 w-20 top-1/2 left-10 z-0",
   },
   {
-    src: '/images/tutors/collage-3.jpg',
-    className: 'h-28 w-28 bottom-2 left-1/4 z-20',
+    src: "/images/tutors/collage-3.jpg",
+    className: "h-28 w-28 bottom-2 left-1/4 z-20",
   },
   // Images IN FRONT of the main image (z-20)
   {
-    src: '/images/tutors/collage-4.jpg',
-    className: 'h-20 w-20 top-10 right-24 z-20',
+    src: "/images/tutors/collage-4.jpg",
+    className: "h-20 w-20 top-10 right-24 z-20",
   },
   {
-    src: '/images/tutors/collage-5.jpg',
-    className: 'h-24 w-24 top-1/2 right-2 z-20',
+    src: "/images/tutors/collage-5.jpg",
+    className: "h-24 w-24 top-1/2 right-2 z-20",
   },
   {
-    src: '/images/tutors/collage-6.jpg',
-    className: 'h-16 w-16 bottom-5 right-1/4 z-20',
+    src: "/images/tutors/collage-6.jpg",
+    className: "h-16 w-16 bottom-5 right-1/4 z-20",
   },
 ];
 
@@ -66,7 +66,7 @@ const TutorCTA = () => {
               src={bigImage.src}
               alt="Main tutor profile"
               fill
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: "cover" }}
             />
           </div>
 
@@ -80,7 +80,7 @@ const TutorCTA = () => {
                 src={image.src}
                 alt={`Tutor profile picture ${index + 1}`}
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
           ))}

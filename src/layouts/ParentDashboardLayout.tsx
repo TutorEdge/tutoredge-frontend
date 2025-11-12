@@ -1,19 +1,19 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
 
 type ParentDashboardLayoutProps = {
   children: React.ReactNode;
 };
 
 const navItems = [
-  { href: '/parent/dashboard', label: 'Overview' },
-  { href: '/parent/tutors', label: 'My Tutors' },
-  { href: '/parent/assignments', label: 'Assignments' },
-  { href: '/parent/materials', label: 'Study Materials' },
-  { href: '/parent/payments', label: 'Payments' },
-  { href: '/parent/payment-methods', label: 'Payment Methods' },
-  { href: '/parent/profile', label: 'Profile' },
+  { href: "/parent/dashboard", label: "Overview" },
+  { href: "/parent/tutors", label: "My Tutors" },
+  { href: "/parent/assignments", label: "Assignments" },
+  { href: "/parent/materials", label: "Study Materials" },
+  { href: "/parent/payments", label: "Payments" },
+  { href: "/parent/payment-methods", label: "Payment Methods" },
+  { href: "/parent/profile", label: "Profile" },
 ];
 
 export default function ParentDashboardLayout({
@@ -34,7 +34,7 @@ export default function ParentDashboardLayout({
                   key={item.href}
                   href={item.href}
                   className={`block rounded-lg px-4 py-2 text-sm font-medium hover:bg-blue-50 hover:text-blue-700 ${
-                    active ? 'bg-blue-100 text-blue-700' : 'text-gray-700'
+                    active ? "bg-blue-100 text-blue-700" : "text-gray-700"
                   }`}
                 >
                   {item.label}

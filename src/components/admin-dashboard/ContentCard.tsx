@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import Link from "next/link";
+import React from "react";
 
 interface Content {
   id: string;
@@ -17,14 +17,16 @@ interface ContentCardProps {
 
 const ContentCard: React.FC<ContentCardProps> = ({ content }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
-      <div className="flex justify-between items-start mb-4">
-        <h3 className="font-semibold text-gray-900 text-lg">{content.title}</h3>
-        <span className={`px-2 py-1 rounded-full text-xs ${
-          content.status === 'published' 
-            ? 'bg-green-100 text-green-800'
-            : 'bg-yellow-100 text-yellow-800'
-        }`}>
+    <div className="rounded-lg bg-white p-6 shadow transition-shadow hover:shadow-md">
+      <div className="mb-4 flex items-start justify-between">
+        <h3 className="text-lg font-semibold text-gray-900">{content.title}</h3>
+        <span
+          className={`rounded-full px-2 py-1 text-xs ${
+            content.status === "published"
+              ? "bg-green-100 text-green-800"
+              : "bg-yellow-100 text-yellow-800"
+          }`}
+        >
           {content.status}
         </span>
       </div>
@@ -51,11 +53,11 @@ const ContentCard: React.FC<ContentCardProps> = ({ content }) => {
       <div className="mt-4 flex space-x-2">
         <Link
           href={`/admin/content/${content.id}`}
-          className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm"
+          className="flex-1 rounded-lg bg-blue-600 py-2 text-center text-sm text-white transition-colors hover:bg-blue-700"
         >
           View Details
         </Link>
-        <button className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+        <button className="rounded-lg border border-gray-300 px-3 py-2 text-sm transition-colors hover:bg-gray-50">
           Edit
         </button>
       </div>

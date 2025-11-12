@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const Assignments = dynamic(
-  () => import('@/components/parent-dashboard/assignments'),
+  () => import("@/components/parent-dashboard/assignments"),
   { ssr: false },
 );
 

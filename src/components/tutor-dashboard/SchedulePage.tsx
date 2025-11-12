@@ -1,11 +1,11 @@
-import 'react-day-picker/dist/style.css'; // Import base styles
+import "react-day-picker/dist/style.css"; // Import base styles
 
-import { format } from 'date-fns';
-import { X } from 'lucide-react';
-import React, { useState } from 'react';
-import { DayPicker } from 'react-day-picker';
+import { format } from "date-fns";
+import { X } from "lucide-react";
+import React, { useState } from "react";
+import { DayPicker } from "react-day-picker";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 // --- Types and Mock Data ---
 type Availability = {
@@ -16,13 +16,13 @@ type Availability = {
 };
 
 const initialAvailability: Availability[] = [
-  { day: 'Monday', isAvailable: true, startTime: '15:00', endTime: '21:00' },
-  { day: 'Tuesday', isAvailable: true, startTime: '15:00', endTime: '21:00' },
-  { day: 'Wednesday', isAvailable: true, startTime: '15:00', endTime: '21:00' },
-  { day: 'Thursday', isAvailable: true, startTime: '15:00', endTime: '21:00' },
-  { day: 'Friday', isAvailable: true, startTime: '15:00', endTime: '21:00' },
-  { day: 'Saturday', isAvailable: false, startTime: '09:00', endTime: '17:00' },
-  { day: 'Sunday', isAvailable: false, startTime: '09:00', endTime: '17:00' },
+  { day: "Monday", isAvailable: true, startTime: "15:00", endTime: "21:00" },
+  { day: "Tuesday", isAvailable: true, startTime: "15:00", endTime: "21:00" },
+  { day: "Wednesday", isAvailable: true, startTime: "15:00", endTime: "21:00" },
+  { day: "Thursday", isAvailable: true, startTime: "15:00", endTime: "21:00" },
+  { day: "Friday", isAvailable: true, startTime: "15:00", endTime: "21:00" },
+  { day: "Saturday", isAvailable: false, startTime: "09:00", endTime: "17:00" },
+  { day: "Sunday", isAvailable: false, startTime: "09:00", endTime: "17:00" },
 ];
 
 const confirmedBookings = [
@@ -43,9 +43,9 @@ const AvailabilityRow: React.FC<{
         <div>
           <p className="font-medium text-gray-800">{dayData.day}</p>
           <p
-            className={`text-sm ${dayData.isAvailable ? 'text-green-600' : 'text-gray-500'}`}
+            className={`text-sm ${dayData.isAvailable ? "text-green-600" : "text-gray-500"}`}
           >
-            {dayData.isAvailable ? 'Available' : 'Unavailable'}
+            {dayData.isAvailable ? "Available" : "Unavailable"}
           </p>
         </div>
         <input
@@ -160,8 +160,8 @@ const SchedulePage = () => {
             onSelect={setSelectedDay}
             modifiers={{ booked: confirmedBookings, timeOff }}
             modifiersClassNames={{
-              booked: 'bg-blue-200 rounded-full',
-              timeOff: 'bg-red-200 text-red-900 rounded-full',
+              booked: "bg-blue-200 rounded-full",
+              timeOff: "bg-red-200 text-red-900 rounded-full",
             }}
             defaultMonth={new Date(2025, 8)}
           />
@@ -169,7 +169,7 @@ const SchedulePage = () => {
             {selectedDay ? (
               <div>
                 <p className="font-semibold text-gray-800">
-                  Selected Day: {format(selectedDay, 'PPP')}
+                  Selected Day: {format(selectedDay, "PPP")}
                 </p>
                 <Button onClick={handleAddTimeOff} className="mt-2">
                   Add Time Off
@@ -193,7 +193,7 @@ const SchedulePage = () => {
                       className="flex items-center justify-between rounded-md bg-gray-50 p-2"
                     >
                       <span className="text-sm text-gray-700">
-                        {format(date, 'PPP')}
+                        {format(date, "PPP")}
                       </span>
                       <button
                         onClick={() => handleRemoveTimeOff(date)}

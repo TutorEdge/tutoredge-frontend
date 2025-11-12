@@ -1,41 +1,41 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
-import Button from '../ui/Button'; // Assuming Button is in components/ui/
+import Button from "../ui/Button"; // Assuming Button is in components/ui/
 
 // --- Data for the component ---
 const mathsCourses = [
   {
-    title: 'Abacus',
-    imageUrl: '/images/abacusImage.png',
+    title: "Abacus",
+    imageUrl: "/images/abacusImage.png",
   },
 
   {
-    title: 'Vedic Maths',
-    imageUrl: '/images/VedicMathsImage.png',
+    title: "Vedic Maths",
+    imageUrl: "/images/VedicMathsImage.png",
   },
 ];
 
 const tutoringCards = [
   {
-    title: 'CBSE',
-    description: 'Personalised tutoring for CBSE curriculum.',
-    imageUrl: '/images/cbseImage.png',
+    title: "CBSE",
+    description: "Personalised tutoring for CBSE curriculum.",
+    imageUrl: "/images/cbseImage.png",
   },
   {
-    title: 'ICSE',
-    description: 'Personalised tutoring for ICSE curriculum.',
-    imageUrl: '/images/icseImage.png',
+    title: "ICSE",
+    description: "Personalised tutoring for ICSE curriculum.",
+    imageUrl: "/images/icseImage.png",
   },
   {
-    title: 'JEE',
-    description: 'Personalised tutoring for JEE preparation.',
-    imageUrl: '/images/jeeImage.png',
+    title: "JEE",
+    description: "Personalised tutoring for JEE preparation.",
+    imageUrl: "/images/jeeImage.png",
   },
   {
-    title: 'Coding',
-    description: 'Personalised coding lessons for all levels.',
-    imageUrl: '/images/codingImage.png',
+    title: "Coding",
+    description: "Personalised coding lessons for all levels.",
+    imageUrl: "/images/codingImage.png",
   },
 ];
 
@@ -70,7 +70,7 @@ const CourseHighlights = () => {
                       src={course.imageUrl}
                       alt={`${course.title} learning`}
                       fill
-                      style={{ objectFit: 'cover' }}
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
                 </div>
@@ -83,7 +83,7 @@ const CourseHighlights = () => {
         <div className="relative z-10 mx-auto -mt-20 w-11/12 rounded-2xl bg-white p-8 shadow-xl">
           <div className="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <h2 className="text-2xl font-semibold text-gray-800">
-              Personalized <span className="text-primary">One-to-One</span>{' '}
+              Personalized <span className="text-primary">One-to-One</span>{" "}
               Tutoring
             </h2>
             <div className="relative h-28 w-48">
@@ -91,7 +91,7 @@ const CourseHighlights = () => {
                 src="/images/courseHighlightIllustration.png"
                 alt="Tutoring illustration"
                 fill
-                style={{ objectFit: 'contain' }}
+                style={{ objectFit: "contain" }}
               />
             </div>
           </div>
@@ -106,7 +106,7 @@ const CourseHighlights = () => {
                     src={card.imageUrl}
                     alt={card.title}
                     fill
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: "cover" }}
                     className="rounded-md"
                   />
                 </div>

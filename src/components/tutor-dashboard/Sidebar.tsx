@@ -6,20 +6,20 @@ import {
   Search,
   Users,
   // User icon is no longer needed here
-} from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
 
 // 1. Removed the 'Profile' link from the data array
 const navLinks = [
-  { href: '/tutor/dashboard', label: 'Home', icon: Home },
-  { href: '/tutor/students', label: 'My Students', icon: Users },
-  { href: '/tutor/schedule', label: 'Schedule & Availability', icon: Calendar },
-  { href: '/tutor/library', label: 'Content Library', icon: Library },
-  { href: '/tutor/find-student', label: 'Find a Student', icon: Search },
-  { href: '/tutor/earnings', label: 'Earnings', icon: DollarSign },
+  { href: "/tutor/dashboard", label: "Home", icon: Home },
+  { href: "/tutor/students", label: "My Students", icon: Users },
+  { href: "/tutor/schedule", label: "Schedule & Availability", icon: Calendar },
+  { href: "/tutor/library", label: "Content Library", icon: Library },
+  { href: "/tutor/find-student", label: "Find a Student", icon: Search },
+  { href: "/tutor/earnings", label: "Earnings", icon: DollarSign },
 ];
 
 const Sidebar = () => {
@@ -55,8 +55,8 @@ const Sidebar = () => {
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors
                   ${
                     isActive
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-600 hover:bg-gray-100'
+                      ? "bg-blue-50 text-blue-600"
+                      : "text-gray-600 hover:bg-gray-100"
                   }
                 `}
               >

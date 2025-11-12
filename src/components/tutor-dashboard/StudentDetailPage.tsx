@@ -1,29 +1,29 @@
-import { CircleUserRound } from 'lucide-react';
-import React, { useState } from 'react';
+import { CircleUserRound } from "lucide-react";
+import React, { useState } from "react";
 
 // Mock Data for the tabs
 const mockBookings = [
   {
     id: 1,
-    subject: 'Calculus I',
-    date: 'July 20, 2024',
-    time: '2:00 PM',
-    status: 'Completed',
+    subject: "Calculus I",
+    date: "July 20, 2024",
+    time: "2:00 PM",
+    status: "Completed",
   },
   {
     id: 2,
-    subject: 'Organic Chemistry',
-    date: 'July 21, 2024',
-    time: '10:00 AM',
-    status: 'Completed',
+    subject: "Organic Chemistry",
+    date: "July 21, 2024",
+    time: "10:00 AM",
+    status: "Completed",
   },
 ];
 const mockAssignments = [
-  { id: 1, title: 'Algebra Worksheet 2', status: 'Graded', score: '95%' },
-  { id: 2, title: 'Physics Lab Report', status: 'Submitted', score: 'Pending' },
+  { id: 1, title: "Algebra Worksheet 2", status: "Graded", score: "95%" },
+  { id: 2, title: "Physics Lab Report", status: "Submitted", score: "Pending" },
 ];
 const mockQuizzes = [
-  { id: 1, title: 'Chapter 5 Biology Quiz', status: 'Completed', score: '88%' },
+  { id: 1, title: "Chapter 5 Biology Quiz", status: "Completed", score: "88%" },
 ];
 
 // Define the type for a student
@@ -38,9 +38,9 @@ interface StudentDetailPageProps {
 }
 
 const StudentDetailPage: React.FC<StudentDetailPageProps> = ({ student }) => {
-  const [activeTab, setActiveTab] = useState('Bookings');
+  const [activeTab, setActiveTab] = useState("Bookings");
 
-  const tabs = ['Bookings', 'Assignments', 'Quizzes'];
+  const tabs = ["Bookings", "Assignments", "Quizzes"];
 
   return (
     <div className="flex flex-col gap-6">
@@ -64,8 +64,8 @@ const StudentDetailPage: React.FC<StudentDetailPageProps> = ({ student }) => {
               onClick={() => setActiveTab(tab)}
               className={`whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium ${
                 activeTab === tab
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
               }`}
             >
               {tab}
@@ -76,7 +76,7 @@ const StudentDetailPage: React.FC<StudentDetailPageProps> = ({ student }) => {
 
       {/* Tab Content */}
       <div className="rounded-xl bg-white p-6 shadow-sm">
-        {activeTab === 'Bookings' && (
+        {activeTab === "Bookings" && (
           <table className="w-full text-sm">
             {/* Table for Bookings */}
             <thead className="text-left">
@@ -99,7 +99,7 @@ const StudentDetailPage: React.FC<StudentDetailPageProps> = ({ student }) => {
             </tbody>
           </table>
         )}
-        {activeTab === 'Assignments' && (
+        {activeTab === "Assignments" && (
           <table className="w-full text-sm">
             {/* Table for Assignments */}
             <thead className="text-left">
@@ -120,7 +120,7 @@ const StudentDetailPage: React.FC<StudentDetailPageProps> = ({ student }) => {
             </tbody>
           </table>
         )}
-        {activeTab === 'Quizzes' && (
+        {activeTab === "Quizzes" && (
           <table className="w-full text-sm">
             {/* Table for Quizzes */}
             <thead className="text-left">

@@ -1,8 +1,8 @@
-import { Dialog } from '@headlessui/react';
-import { Plus, Trash2, X } from 'lucide-react';
-import React, { useState } from 'react';
+import { Dialog } from "@headlessui/react";
+import { Plus, Trash2, X } from "lucide-react";
+import React, { useState } from "react";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 interface CreateQuizModalProps {
   isOpen: boolean;
@@ -28,8 +28,8 @@ const CreateQuizModal: React.FC<CreateQuizModalProps> = ({
       ...questions,
       {
         id: Date.now(),
-        questionText: '',
-        options: ['', '', '', ''],
+        questionText: "",
+        options: ["", "", "", ""],
         correctAnswerIndex: 0,
       },
     ]);

@@ -1,38 +1,38 @@
-import { Star, Upload } from 'lucide-react';
-import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import { Star, Upload } from "lucide-react";
+import Image from "next/image";
+import React, { useRef, useState } from "react";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 // --- Mock Data (to be replaced by API data) ---
 const mockTutorData = {
-  fullName: 'Dr. Amelia Carter',
-  email: 'amelia.carter@email.com',
-  imageUrl: '/images/tutors/tutor-4.jpg',
-  bio: 'Passionate and experienced educator with a PhD in Physics specializing in quantum mechanics. I believe in making complex topics accessible and engaging for all students.',
-  subjects: 'Physics, Calculus I, Organic Chemistry',
-  languages: 'English, Spanish',
-  classesTaught: 'Grade 9 to 12, University Level',
-  experience: '10+',
-  qualifications: 'PhD in Physics',
-  college: 'Massachusetts Institute of Technology (MIT)',
+  fullName: "Dr. Amelia Carter",
+  email: "amelia.carter@email.com",
+  imageUrl: "/images/tutors/tutor-4.jpg",
+  bio: "Passionate and experienced educator with a PhD in Physics specializing in quantum mechanics. I believe in making complex topics accessible and engaging for all students.",
+  subjects: "Physics, Calculus I, Organic Chemistry",
+  languages: "English, Spanish",
+  classesTaught: "Grade 9 to 12, University Level",
+  experience: "10+",
+  qualifications: "PhD in Physics",
+  college: "Massachusetts Institute of Technology (MIT)",
 };
 
 const mockReviews = [
   {
     id: 1,
-    studentName: 'Ethan Carter',
+    studentName: "Ethan Carter",
     rating: 5,
-    date: 'July 21, 2024',
+    date: "July 21, 2024",
     comment:
       "Dr. Carter is an amazing calculus tutor! My son's grades have improved dramatically.",
   },
   {
     id: 2,
-    studentName: 'Olivia Bennett',
+    studentName: "Olivia Bennett",
     rating: 5,
-    date: 'July 19, 2024',
-    comment: 'Excellent at explaining complex topics in organic chemistry.',
+    date: "July 19, 2024",
+    comment: "Excellent at explaining complex topics in organic chemistry.",
   },
 ];
 
@@ -76,7 +76,7 @@ const EditProfileTab = () => {
       // await fetch('/api/tutor/profile/photo', { method: 'POST', body: uploadData });
     }
     // await fetch('/api/tutor/profile', { method: 'PUT', body: JSON.stringify(formData) });
-    alert('Profile changes saved! (Simulated)');
+    alert("Profile changes saved! (Simulated)");
   };
 
   return (
@@ -268,7 +268,7 @@ const MyReviewsTab = () => (
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`size-5 ${i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
+                  className={`size-5 ${i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
                 />
               ))}
             </div>
@@ -286,8 +286,8 @@ const MyReviewsTab = () => (
 
 // --- Main Page Component ---
 const ProfilePage = () => {
-  const [activeTab, setActiveTab] = useState('Edit Profile');
-  const tabs = ['Edit Profile', 'My Reviews'];
+  const [activeTab, setActiveTab] = useState("Edit Profile");
+  const tabs = ["Edit Profile", "My Reviews"];
 
   return (
     <div className="flex flex-col gap-6">
@@ -306,8 +306,8 @@ const ProfilePage = () => {
               onClick={() => setActiveTab(tab)}
               className={`whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium ${
                 activeTab === tab
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
               }`}
             >
               {tab}
@@ -317,8 +317,8 @@ const ProfilePage = () => {
       </div>
 
       <div>
-        {activeTab === 'Edit Profile' && <EditProfileTab />}
-        {activeTab === 'My Reviews' && <MyReviewsTab />}
+        {activeTab === "Edit Profile" && <EditProfileTab />}
+        {activeTab === "My Reviews" && <MyReviewsTab />}
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 const payments = [
-  { id: 'INV-1001', date: '01 Sep', amount: '₹1,500', status: 'Paid' },
-  { id: 'INV-1002', date: '10 Oct', amount: '₹1,500', status: 'Due' },
+  { id: "INV-1001", date: "01 Sep", amount: "₹1,500", status: "Paid" },
+  { id: "INV-1002", date: "10 Oct", amount: "₹1,500", status: "Due" },
 ];
 
 export default function StudentPaymentsPage() {
@@ -36,7 +36,7 @@ export default function StudentPaymentsPage() {
             <div>{p.amount}</div>
             <div className="text-right">
               <span
-                className={`rounded-md px-2 py-1 ${p.status === 'Paid' ? 'bg-green-50 text-green-700' : 'bg-yellow-50 text-yellow-700'}`}
+                className={`rounded-md px-2 py-1 ${p.status === "Paid" ? "bg-green-50 text-green-700" : "bg-yellow-50 text-yellow-700"}`}
               >
                 {p.status}
               </span>

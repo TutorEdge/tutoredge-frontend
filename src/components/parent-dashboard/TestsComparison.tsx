@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type SeriesPoint = {
   label: string; // test name or month
@@ -13,7 +13,7 @@ type TestsComparisonProps = {
 };
 
 export default function TestsComparison({
-  title = 'Tests: Previous vs Current',
+  title = "Tests: Previous vs Current",
   data,
   height = 200,
 }: TestsComparisonProps) {

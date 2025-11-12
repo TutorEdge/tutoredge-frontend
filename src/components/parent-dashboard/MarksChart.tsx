@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type MarkDatum = {
   label: string;
@@ -12,7 +12,7 @@ type MarksChartProps = {
 };
 
 export default function MarksChart({
-  title = 'Marks',
+  title = "Marks",
   data,
   height = 180,
 }: MarksChartProps) {

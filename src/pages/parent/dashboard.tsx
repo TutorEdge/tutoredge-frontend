@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const ParentDashboard = dynamic(
-  () => import('@/components/parent-dashboard/ParentDashboard'),
+  () => import("@/components/parent-dashboard/ParentDashboard"),
   { ssr: false },
 );
 

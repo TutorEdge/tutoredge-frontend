@@ -1,83 +1,110 @@
-import React from 'react';
-import { 
-  UsersIcon, 
-  DocumentTextIcon, 
-  CurrencyDollarIcon, 
-  ChartBarIcon 
-} from '@heroicons/react/24/outline';
-import StatsCard from '@/components/admin-dashboard/StatsCard';
+import React from "react";
+import {
+  UsersIcon,
+  DocumentTextIcon,
+  CurrencyDollarIcon,
+  ChartBarIcon,
+} from "@heroicons/react/24/outline";
+import StatsCard from "@/components/admin-dashboard/StatsCard";
 
-const stats = [
+// ✅ Properly defined interface (must be closed with })
+interface Stat {
+  title: string;
+  value: string;
+  icon: React.ElementType;
+  color: string;
+  change: string;
+}
+
+// ✅ Array now correctly typed
+const stats: Stat[] = [
   {
-    title: 'Total Users',
-    value: '1,234',
+    title: "Total Users",
+    value: "1,234",
     icon: UsersIcon,
-    color: 'bg-blue-500',
-    change: '+12%',
+    color: "bg-blue-500",
+    change: "+12%",
   },
   {
-    title: 'Total Content',
-    value: '567',
+    title: "Total Content",
+    value: "567",
     icon: DocumentTextIcon,
-    color: 'bg-green-500',
-    change: '+8%',
+    color: "bg-green-500",
+    change: "+8%",
   },
   {
-    title: 'Revenue',
-    value: '$12,345',
+    title: "Revenue",
+    value: "$12,345",
     icon: CurrencyDollarIcon,
-    color: 'bg-purple-500',
-    change: '+15%',
+    color: "bg-purple-500",
+    change: "+15%",
   },
   {
-    title: 'Active Sessions',
-    value: '89',
+    title: "Active Sessions",
+    value: "89",
     icon: ChartBarIcon,
-    color: 'bg-orange-500',
-    change: '+3%',
+    color: "bg-orange-500",
+    change: "+3%",
   },
 ];
 
 const AdminDashboard: React.FC = () => {
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-6 p-6">
+      {/* Header Section */}
+      <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
         <div className="text-sm text-gray-500">
           Last updated: {new Date().toLocaleDateString()}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <StatsCard key={index} {...stat} />
+      {/* Stats Cards Section */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {stats.map((stat) => (
+          <StatsCard key={stat.title} {...stat} />
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
+      {/* Two-column layout */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* Recent Activity */}
+        <div className="rounded-lg bg-white p-6 shadow">
+          <h2 className="mb-4 text-lg font-semibold">Recent Activity</h2>
           <div className="space-y-4">
             {[1, 2, 3, 4].map((item) => (
-              <div key={item} className="flex items-center space-x-3 text-sm">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <div
+                key={item}
+                className="flex items-center space-x-3 text-sm text-gray-700"
+              >
+                <div className="h-2 w-2 rounded-full bg-blue-500" />
                 <span>New user registered</span>
-                <span className="text-gray-500 ml-auto">2 hours ago</span>
+                <span className="ml-auto text-gray-500">2 hours ago</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
+        {/* Quick Actions */}
+        <div className="rounded-lg bg-white p-6 shadow">
+          <h2 className="mb-4 text-lg font-semibold">Quick Actions</h2>
           <div className="space-y-3">
-            <button className="w-full text-left px-4 py-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors">
+            <button
+              type="button"
+              className="w-full rounded-lg bg-blue-50 px-4 py-3 text-left text-blue-700 transition-colors hover:bg-blue-100"
+            >
               Add New User
             </button>
-            <button className="w-full text-left px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors">
+            <button
+              type="button"
+              className="w-full rounded-lg bg-green-50 px-4 py-3 text-left text-green-700 transition-colors hover:bg-green-100"
+            >
               Create Content
             </button>
-            <button className="w-full text-left px-4 py-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors">
+            <button
+              type="button"
+              className="w-full rounded-lg bg-purple-50 px-4 py-3 text-left text-purple-700 transition-colors hover:bg-purple-100"
+            >
               Generate Report
             </button>
           </div>

@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
-import CompleteProfile from "../tutor-flow/complete-profile";
+
+import CompleteProfile from "./complete-profile";
 
 const CompleteProfilePage: NextPage = () => {
   return <CompleteProfile />;

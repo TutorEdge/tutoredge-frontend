@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
 type Tutor = {
   id: string;
@@ -24,7 +24,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
           src={tutor.avatar}
           alt={tutor.name}
           fill
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: "cover" }}
         />
       </div>
       <div className="p-4">
@@ -33,7 +33,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
             <div className="text-lg font-semibold">{tutor.name}</div>
             <div className="text-sm text-gray-600">{tutor.subject}</div>
             <div className="mt-1 text-xs text-gray-500">
-              {tutor.experienceYears}+ yrs • {tutor.location || 'Online'}
+              {tutor.experienceYears}+ yrs • {tutor.location || "Online"}
             </div>
           </div>
           <div className="rounded-md bg-blue-50 px-2 py-1 text-sm font-semibold text-blue-700">

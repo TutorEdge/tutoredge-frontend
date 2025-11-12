@@ -1,8 +1,8 @@
-import { Dialog } from '@headlessui/react';
-import { X } from 'lucide-react';
-import React from 'react';
+import { Dialog } from "@headlessui/react";
+import { X } from "lucide-react";
+import React from "react";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 interface CreateAssignmentModalProps {
   isOpen: boolean;

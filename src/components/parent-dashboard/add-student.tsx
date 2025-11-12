@@ -1,4 +1,4 @@
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 export default function AddStudentPage() {
   return (

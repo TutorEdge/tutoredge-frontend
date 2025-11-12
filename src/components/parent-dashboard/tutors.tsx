@@ -1,29 +1,29 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 const tutors = [
   {
-    id: 'ananya',
-    name: 'Ananya Gupta',
-    subject: 'Mathematics',
+    id: "ananya",
+    name: "Ananya Gupta",
+    subject: "Mathematics",
     rating: 4.9,
-    avatar: '/images/tutors/tutor-1.jpg',
+    avatar: "/images/tutors/tutor-1.jpg",
   },
   {
-    id: 'rahul',
-    name: 'Rahul Mehta',
-    subject: 'Physics',
+    id: "rahul",
+    name: "Rahul Mehta",
+    subject: "Physics",
     rating: 4.8,
-    avatar: '/images/tutors/tutor-2.jpg',
+    avatar: "/images/tutors/tutor-2.jpg",
   },
   {
-    id: 'sneha',
-    name: 'Sneha Iyer',
-    subject: 'Chemistry',
+    id: "sneha",
+    name: "Sneha Iyer",
+    subject: "Chemistry",
     rating: 4.7,
-    avatar: '/images/tutors/tutor-3.jpg',
+    avatar: "/images/tutors/tutor-3.jpg",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function StudentTutorsPage() {
                 src={tutor.avatar}
                 alt={tutor.name}
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div className="p-4">

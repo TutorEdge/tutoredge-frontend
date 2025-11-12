@@ -1,26 +1,26 @@
-import { CalendarCheck, CreditCard, MonitorPlay } from 'lucide-react';
-import React from 'react';
+import { CalendarCheck, CreditCard, MonitorPlay } from "lucide-react";
+import React from "react";
 
-import Button from '../ui/Button';
+import Button from "../ui/Button";
 
 const stepsData = [
   {
     id: 1,
     icon: CalendarCheck,
-    title: 'Book a Demo',
-    description: 'Book a Free Demo Class with a Tutor.',
+    title: "Book a Demo",
+    description: "Book a Free Demo Class with a Tutor.",
   },
   {
     id: 2,
     icon: MonitorPlay,
-    title: 'Join LIVE Demo Class',
-    description: 'Attend the demo class as scheduled.',
+    title: "Join LIVE Demo Class",
+    description: "Attend the demo class as scheduled.",
   },
   {
     id: 3,
     icon: CreditCard,
-    title: 'Pay and Start',
-    description: 'Use TutorEdge SecurePay to pay and start your Classes.',
+    title: "Pay and Start",
+    description: "Use TutorEdge SecurePay to pay and start your Classes.",
   },
 ];
 

@@ -1,5 +1,3 @@
-
-
 /* stylelint-disable at-rule-no-unknown */
 /* This file uses Tailwind CSS at-rules which are processed by PostCSS/Tailwind. */
 
@@ -9,13 +7,23 @@
 /* stylelint-enable at-rule-no-unknown */
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-up {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .animate-fade-in {

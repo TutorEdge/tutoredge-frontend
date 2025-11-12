@@ -1,6 +1,7 @@
-import { NextPage } from "next";
-import { useState, ChangeEvent, FormEvent } from "react";
+import type { NextPage } from "next";
 import { useRouter } from "next/router";
+import type { ChangeEvent, FormEvent } from "react";
+import { useState } from "react";
 
 const VerifyPhone: NextPage = () => {
   const router = useRouter();
@@ -22,10 +23,10 @@ const VerifyPhone: NextPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-50">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md text-center">
-        <h2 className="text-xl font-semibold mb-2">Verify Your Phone Number</h2>
-        <p className="text-gray-600 mb-6">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 text-center shadow-md">
+        <h2 className="mb-2 text-xl font-semibold">Verify Your Phone Number</h2>
+        <p className="mb-6 text-gray-600">
           We’ve sent a 6-digit OTP to your phone number.
         </p>
 
@@ -37,13 +38,13 @@ const VerifyPhone: NextPage = () => {
             onChange={handleChange}
             placeholder="Enter 6-digit code"
             maxLength={6}
-            className="border w-full p-2 rounded-md text-center tracking-widest text-lg"
+            className="w-full rounded-md border p-2 text-center text-lg tracking-widest"
             required
           />
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+            className="w-full rounded-md bg-blue-600 py-2 text-white hover:bg-blue-700"
           >
             Verify & Continue
           </button>

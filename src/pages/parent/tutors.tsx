@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const Tutors = dynamic(() => import('@/components/parent-dashboard/tutors'), {
+const Tutors = dynamic(() => import("@/components/parent-dashboard/tutors"), {
   ssr: false,
 });
 

@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-import ParentDashboardLayout from '@/layouts/ParentDashboardLayout';
+import ParentDashboardLayout from "@/layouts/ParentDashboardLayout";
 
 export default function TutorDetailPage() {
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function TutorDetailPage() {
                 src="/images/tutors/tutor-1.jpg"
                 alt="Tutor avatar"
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div>

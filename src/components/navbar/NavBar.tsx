@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
 // Data for navigation links
 const navLinks = [
-  { href: '/subjects', label: 'Subjects' },
-  { href: '/how-it-works', label: 'How it Works' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/resources', label: 'Resources' },
+  { href: "/subjects", label: "Subjects" },
+  { href: "/how-it-works", label: "How it Works" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/resources", label: "Resources" },
 ];
 
 const NavBar = () => {

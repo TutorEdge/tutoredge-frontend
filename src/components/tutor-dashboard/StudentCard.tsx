@@ -1,7 +1,7 @@
 // 1. Replaced 'next/image' with the icon import
-import { CircleUserRound } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
+import { CircleUserRound } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
 // Define the type for a single student's data (imageUrl is no longer needed)
 interface Student {

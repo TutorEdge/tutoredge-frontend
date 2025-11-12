@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const Payments = dynamic(
-  () => import('@/components/parent-dashboard/payments'),
+  () => import("@/components/parent-dashboard/payments"),
   { ssr: false },
 );
 

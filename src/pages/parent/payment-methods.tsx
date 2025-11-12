@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const PaymentMethods = dynamic(() => import('@/components/parent-dashboard'), {
+const PaymentMethods = dynamic(() => import("@/components/parent-dashboard"), {
   ssr: false,
 });
 

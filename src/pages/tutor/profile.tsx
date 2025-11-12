@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import ProfilePage from '@/components/tutor-dashboard/ProfilePage';
-import TutorDashboardLayout from '@/components/tutor-dashboard/TutorDashboardLayout';
+import ProfilePage from "@/components/tutor-dashboard/ProfilePage";
+import TutorDashboardLayout from "@/components/tutor-dashboard/TutorDashboardLayout";
 
 const TutorProfile = () => {
   return (

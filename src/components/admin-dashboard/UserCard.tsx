@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import Link from "next/link";
+import React from "react";
 
 interface User {
   id: string;
@@ -16,11 +16,14 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+    <div className="rounded-lg bg-white p-6 shadow transition-shadow hover:shadow-md">
       <div className="flex items-center space-x-4">
-        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-          <span className="text-blue-600 font-semibold">
-            {user.name.split(' ').map(n => n[0]).join('')}
+        <div className="flex size-12 items-center justify-center rounded-full bg-blue-100">
+          <span className="font-semibold text-blue-600">
+            {user.name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
           </span>
         </div>
         <div className="flex-1">
@@ -28,27 +31,31 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
           <p className="text-sm text-gray-600">{user.email}</p>
         </div>
       </div>
-      
+
       <div className="mt-4 space-y-2">
         <div className="flex justify-between text-sm">
           <span className="text-gray-600">Role:</span>
-          <span className={`px-2 py-1 rounded-full text-xs ${
-            user.role === 'Admin' 
-              ? 'bg-purple-100 text-purple-800'
-              : user.role === 'Tutor'
-              ? 'bg-green-100 text-green-800'
-              : 'bg-blue-100 text-blue-800'
-          }`}>
+          <span
+            className={`rounded-full px-2 py-1 text-xs ${
+              user.role === "Admin"
+                ? "bg-purple-100 text-purple-800"
+                : user.role === "Tutor"
+                  ? "bg-green-100 text-green-800"
+                  : "bg-blue-100 text-blue-800"
+            }`}
+          >
             {user.role}
           </span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-gray-600">Status:</span>
-          <span className={`px-2 py-1 rounded-full text-xs ${
-            user.status === 'active' 
-              ? 'bg-green-100 text-green-800'
-              : 'bg-red-100 text-red-800'
-          }`}>
+          <span
+            className={`rounded-full px-2 py-1 text-xs ${
+              user.status === "active"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
+          >
             {user.status}
           </span>
         </div>
@@ -61,11 +68,11 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
       <div className="mt-4 flex space-x-2">
         <Link
           href={`/admin/users/${user.id}`}
-          className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm"
+          className="flex-1 rounded-lg bg-blue-600 py-2 text-center text-sm text-white transition-colors hover:bg-blue-700"
         >
           View Details
         </Link>
-        <button className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+        <button className="rounded-lg border border-gray-300 px-3 py-2 text-sm transition-colors hover:bg-gray-50">
           Edit
         </button>
       </div>

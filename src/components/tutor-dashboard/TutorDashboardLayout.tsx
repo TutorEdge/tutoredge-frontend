@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import Sidebar from './Sidebar';
+import Sidebar from "./Sidebar";
 
 type TutorDashboardLayoutProps = {
   children: React.ReactNode;
