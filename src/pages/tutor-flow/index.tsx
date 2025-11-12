@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import TutorRegistration from "@/tutor-flow/index";
+import TutorRegistration from "@/components/tutor-flow";
 
 const TutorRegistrationPage: NextPage = () => {
   return <TutorRegistration />;

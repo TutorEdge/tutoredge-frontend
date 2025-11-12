@@ -1,7 +1,6 @@
 import { NextPage } from "next";
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/router";
-import type { ChangeEvent, FormEvent } from "react";
 
 type TutorForm = {
   fullName: string;
@@ -42,13 +41,13 @@ const TutorRegistration: NextPage = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // TODO: call backend to create tutor application or save to session/localStorage
-    // Example: save to sessionStorage so later pages can read it
+
     try {
       sessionStorage.setItem("tutorApplication", JSON.stringify(formData));
     } catch {
-      /* ignore for environments without sessionStorage */
+      console.warn("SessionStorage unavailable");
     }
+
     router.push("/tutor-flow/verify-phone");
   };
 

@@ -9,7 +9,8 @@ const ApplicationReceived: NextPage = () => {
       <div className="text-center bg-white p-10 rounded-lg shadow-lg w-full max-w-lg">
         <h2 className="text-2xl font-semibold mb-3">Application Received!</h2>
         <p className="text-gray-600 mb-6">
-          Thank you for applying to join Tutoredge! Our team will review your details and contact you shortly.
+          Thank you for applying to join Tutoredge! Our team will review your
+          details and contact you shortly.
         </p>
         <div className="flex gap-3 justify-center">
           <button

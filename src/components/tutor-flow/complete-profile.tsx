@@ -1,6 +1,5 @@
 import { NextPage } from "next";
-import { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 
 type CompleteProfileForm = {
   bio: string;
@@ -9,7 +8,7 @@ type CompleteProfileForm = {
   certifications: string;
 };
 
-const initial: CompleteProfileForm = {
+const initialForm: CompleteProfileForm = {
   bio: "",
   subject: "",
   method: "",
@@ -17,10 +16,12 @@ const initial: CompleteProfileForm = {
 };
 
 const CompleteProfile: NextPage = () => {
-  const [form, setForm] = useState<CompleteProfileForm>(initial);
+  const [form, setForm] = useState<CompleteProfileForm>(initialForm);
   const [image, setImage] = useState<File | null>(null);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value as any }));
   };
@@ -35,7 +36,7 @@ const CompleteProfile: NextPage = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // TODO: prepare FormData and call backend API to upload profile picture + other profile data
+
     const payload = new FormData();
     payload.append("bio", form.bio);
     payload.append("subject", form.subject);
@@ -43,10 +44,7 @@ const CompleteProfile: NextPage = () => {
     payload.append("certifications", form.certifications);
     if (image) payload.append("profilePicture", image);
 
-    // fetch("/api/tutor/complete-profile", { method: "POST", body: payload })
-    //   .then(...)
-    // For now show mock success
-    alert("Profile saved (mock)");
+    alert("Profile saved successfully (mock)");
   };
 
   return (
@@ -111,7 +109,10 @@ const CompleteProfile: NextPage = () => {
             />
           </div>
 
-          <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700" type="submit">
+          <button
+            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+            type="submit"
+          >
             Save Profile
           </button>
         </form>

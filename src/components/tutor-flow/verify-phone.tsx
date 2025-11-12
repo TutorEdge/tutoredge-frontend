@@ -1,35 +1,33 @@
 import { NextPage } from "next";
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/router";
-import type { ChangeEvent, FormEvent } from "react";
 
 const VerifyPhone: NextPage = () => {
   const router = useRouter();
   const [otp, setOtp] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // accept only digits
-    const v = e.target.value.replace(/\D/g, "");
-    setOtp(v.slice(0, 6));
+    const value = e.target.value.replace(/\D/g, "");
+    setOtp(value.slice(0, 6));
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // TODO: verify OTP with backend
-    // For now assume success
+    // Assume OTP is correct for demo
     router.push("/tutor-flow/application-received");
   };
 
   const handleResend = () => {
-    // TODO: trigger resend OTP API; show toast/feedback
-    alert("OTP resent (mock)");
+    alert("OTP resent successfully (mock)");
   };
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-50">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md text-center">
         <h2 className="text-xl font-semibold mb-2">Verify Your Phone Number</h2>
-        <p className="text-gray-600 mb-6">We've sent a 6-digit OTP to your phone number.</p>
+        <p className="text-gray-600 mb-6">
+          We’ve sent a 6-digit OTP to your phone number.
+        </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input

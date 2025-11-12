@@ -1,10 +1,9 @@
 import { BookText, Calculator, Code2, Languages } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
-
 import Button from '../ui/Button';
 
-// 1. Added a 'justify' property to control card alignment
 const kidsCourses = [
   {
     id: 1,
@@ -17,7 +16,8 @@ const kidsCourses = [
       text: 'text-rose-600',
       iconBg: 'bg-rose-100',
     },
-    justify: 'md:justify-self-end', // Align left-side cards to the right
+    justify: 'md:justify-self-end',
+    link: '/courses/spoken-english',
   },
   {
     id: 2,
@@ -30,11 +30,12 @@ const kidsCourses = [
       text: 'text-yellow-600',
       iconBg: 'bg-yellow-100',
     },
-    justify: 'md:justify-self-start', // Align right-side cards to the left
+    justify: 'md:justify-self-start',
+    link: '/courses/primary-section',
   },
   {
     id: 3,
-    title: 'Learn math',
+    title: 'Learn Math',
     classRange: 'Class 1 to 5',
     description: 'Turn your child into a Math wizard',
     icon: Calculator,
@@ -44,10 +45,11 @@ const kidsCourses = [
       iconBg: 'bg-blue-100',
     },
     justify: 'md:justify-self-end',
+    link: '/courses/junior-section',
   },
   {
     id: 4,
-    title: 'Coding classes',
+    title: 'Coding Classes',
     classRange: 'Class 1 - 8',
     description: 'Learn to build apps and games, be future ready',
     icon: Code2,
@@ -57,10 +59,10 @@ const kidsCourses = [
       iconBg: 'bg-purple-100',
     },
     justify: 'md:justify-self-start',
+    link: '/courses/computer-learning',
   },
 ];
 
-// --- Main Component ---
 const CoursesForKids = () => {
   return (
     <div className="mx-auto max-w-6xl p-6 py-16">
@@ -69,6 +71,7 @@ const CoursesForKids = () => {
       </h2>
 
       <div className="relative">
+        {/* Center image */}
         <div className="hidden lg:absolute lg:left-1/2 lg:top-1/2 lg:z-10 lg:block lg:-translate-x-1/2 lg:-translate-y-1/2">
           <div className="relative size-80 overflow-hidden rounded-full border-8 border-white shadow-lg">
             <div className="absolute inset-0 -m-4 scale-110 rounded-full bg-pink-100/50"></div>
@@ -85,7 +88,6 @@ const CoursesForKids = () => {
           {kidsCourses.map((course) => {
             const Icon = course.icon;
             return (
-              // 2. Added max-width and dynamic justify classes
               <div
                 key={course.id}
                 className={`w-full max-w-sm rounded-2xl p-6 ${course.colors.bg} ${course.justify}`}
@@ -104,9 +106,11 @@ const CoursesForKids = () => {
                       {course.title}
                     </h3>
                     <p className="text-gray-600">{course.description}</p>
-                    <Button variant="dark" className="mt-4">
-                      Explore
-                    </Button>
+                    <Link href={course.link}>
+                      <Button variant="dark" className="mt-4">
+                        Explore
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>

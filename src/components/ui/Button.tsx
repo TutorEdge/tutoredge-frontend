@@ -1,32 +1,48 @@
-import React from 'react';
+import React from "react";
+import clsx from "clsx";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: "primary" | "secondary" | "dark";
+  size?: "sm" | "md" | "lg";
+  className?: string;
   children: React.ReactNode;
-  variant?: 'primary' | 'dark'; // Add a variant prop
-}
+};
 
 const Button: React.FC<ButtonProps> = ({
+  variant = "primary",
+  size = "md",
+  className,
   children,
-  className = '',
-  variant = 'primary', // Default to 'primary'
   ...props
 }) => {
-  const baseClasses =
-    'flex items-center justify-center rounded-xl font-bold leading-normal tracking-[-0.015em] transition-colors duration-200';
+  const baseStyles =
+    "rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
-  // Define styles for each variant
-  const variantClasses = {
+  const variantStyles = {
     primary:
-      'bg-[#177ccc] text-white hover:bg-[#1262a6] h-10 px-4 text-sm sm:h-12 sm:px-5 sm:text-base',
-    dark: 'bg-gray-900 text-white hover:bg-gray-700 h-10 px-6 py-3 text-sm rounded-lg',
+      "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",
+    secondary:
+      "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400",
+    dark: "bg-black text-white hover:bg-gray-800 focus:ring-gray-600",
+  };
+
+  const sizeStyles = {
+    sm: "text-sm px-3 py-1.5",
+    md: "text-base px-4 py-2",
+    lg: "text-lg px-6 py-3",
   };
 
   return (
     <button
-      className={`${baseClasses} ${variantClasses[variant]} ${className}`}
+      className={clsx(
+        baseStyles,
+        variantStyles[variant],
+        sizeStyles[size],
+        className
+      )}
       {...props}
     >
-      <span className="truncate">{children}</span>
+      {children}
     </button>
   );
 };
