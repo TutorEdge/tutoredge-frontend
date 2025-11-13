@@ -1,61 +1,32 @@
 import { Search } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
-// --- Mock Data ---
-// In a real app, this would be fetched from your API
-const mockParentRequests = [
-  {
-    id: 1,
-    parentName: 'Peter Parker',
-    tutorName: 'Chloe Clark',
-    subject: 'Math, Physics',
-    status: 'Active',
-    requestedDate: '2024-07-22',
-  },
-  {
-    id: 2,
-    parentName: 'Jackson Reed',
-    tutorName: 'Owen Reed',
-    subject: 'Science',
-    status: 'Inactive',
-    requestedDate: '2024-07-21',
-  },
-  {
-    id: 3,
-    parentName: 'Isabella Hayes',
-    tutorName: 'Lucas Hayes',
-    subject: 'All',
-    status: 'Active',
-    requestedDate: '2024-07-19',
-  },
-  {
-    id: 4,
-    parentName: 'Aiden Parker',
-    tutorName: 'Lily Parker',
-    subject: 'History',
-    status: 'Inactive',
-    requestedDate: '2024-07-17',
-  },
-  {
-    id: 5,
-    parentName: 'Mia Bennett',
-    tutorName: 'Ethan Bennett',
-    subject: 'Spanish',
-    status: 'Active',
-    requestedDate: '2024-07-16',
-  },
-];
+import apiClient from '@/lib/apiClient'; // 1. Import your API client
+
+// 2. Define a type for the API data
+interface ParentRequest {
+  id: string;
+  parent: { name: string };
+  tutor: { name: string };
+  academicNeeds: string[];
+  status: string;
+  createdAt: string;
+}
 
 // Reusable component for status pills
 const StatusPill = ({ status }: { status: string }) => {
   const statusColors: { [key: string]: string } = {
     Active: 'bg-green-100 text-green-800',
     Inactive: 'bg-gray-100 text-gray-800',
-    // Add other statuses as needed
+    Pending: 'bg-yellow-100 text-yellow-800',
+    Assigned: 'bg-blue-100 text-blue-800',
+    Completed: 'bg-purple-100 text-purple-800',
   };
   return (
     <span
-      className={`rounded-full px-3 py-1 text-xs font-medium ${statusColors[status] || 'bg-yellow-100 text-yellow-800'}`}
+      className={`rounded-full px-3 py-1 text-xs font-medium capitalize ${
+        statusColors[status] || 'bg-gray-100 text-gray-800'
+      }`}
     >
       {status}
     </span>
@@ -64,22 +35,56 @@ const StatusPill = ({ status }: { status: string }) => {
 
 // --- Main Page Component ---
 const ParentRequestsPage = () => {
+  // 3. Remove mockData and add state for API data
+  const [requests, setRequests] = useState<ParentRequest[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [subjectFilter, setSubjectFilter] = useState('All');
 
+  // 4. Fetch data from the API on component mount
+  useEffect(() => {
+    const fetchRequests = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await apiClient.get('/parent/requests?type=all');
+        setRequests(response.data || []);
+      } catch (err: any) {
+        setError('Failed to fetch requests. Are you logged in as an Admin?');
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchRequests();
+  }, []); // Empty array means this runs once on load
+
+  // 5. Update useMemo to use the 'requests' state
   const filteredRequests = useMemo(() => {
-    return mockParentRequests
+    return requests
       .filter((req) => statusFilter === 'All' || req.status === statusFilter)
       .filter(
-        (req) => subjectFilter === 'All' || req.subject.includes(subjectFilter),
+        (req) =>
+          subjectFilter === 'All' || req.academicNeeds.includes(subjectFilter),
       )
       .filter(
         (req) =>
-          req.parentName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          req.tutorName.toLowerCase().includes(searchQuery.toLowerCase()),
+          req.parent.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (req.tutor &&
+            req.tutor.name.toLowerCase().includes(searchQuery.toLowerCase())),
       );
-  }, [searchQuery, statusFilter, subjectFilter]);
+  }, [searchQuery, statusFilter, subjectFilter, requests]);
+
+  // 6. Add loading and error states to the UI
+  if (isLoading) {
+    return <div className="p-4">Loading requests...</div>;
+  }
+  if (error) {
+    return <div className="p-4 text-red-600">{error}</div>;
+  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -109,6 +114,9 @@ const ParentRequestsPage = () => {
             <option value="All">All Statuses</option>
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
+            <option value="Pending">Pending</option>
+            <option value="Assigned">Assigned</option>
+            <option value="Completed">Completed</option>
           </select>
           <select
             value={subjectFilter}
@@ -116,10 +124,13 @@ const ParentRequestsPage = () => {
             className="w-full rounded-md border-gray-300 sm:w-auto"
           >
             <option value="All">All Subjects</option>
+            {/* Note: This list is static. You might want to dynamically populate it from the API data */}
             <option>Math</option>
             <option>Science</option>
             <option>History</option>
             <option>Spanish</option>
+            <option>Physics</option>
+            <option>All</option>
           </select>
         </div>
       </div>
@@ -141,14 +152,20 @@ const ParentRequestsPage = () => {
             {filteredRequests.map((req) => (
               <tr key={req.id} className="border-t">
                 <td className="p-4 font-medium text-gray-800">
-                  {req.parentName}
+                  {req.parent.name}
                 </td>
-                <td className="p-4 text-gray-600">{req.tutorName}</td>
-                <td className="p-4 text-gray-600">{req.subject}</td>
+                <td className="p-4 text-gray-600">
+                  {req.tutor?.name || 'N/A'}
+                </td>
+                <td className="p-4 text-gray-600">
+                  {req.academicNeeds.join(', ')}
+                </td>
                 <td className="p-4">
                   <StatusPill status={req.status} />
                 </td>
-                <td className="p-4 text-gray-600">{req.requestedDate}</td>
+                <td className="p-4 text-gray-600">
+                  {new Date(req.createdAt).toLocaleDateString()}
+                </td>
                 <td className="p-4">
                   <a
                     href={`/admin/requests/${req.id}`}

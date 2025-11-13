@@ -72,12 +72,12 @@ const NavBar = () => {
           ) : (
             // Logged Out State: Show CTA buttons
             <>
-              <Link href="/find-a-tutor">
+              <Link href="../find-tutor-flow/create-account">
                 <button className="h-10 rounded-xl bg-primary px-4 text-sm font-bold text-white transition-colors hover:bg-[#1262a6]">
                   Find a Tutor
                 </button>
               </Link>
-              <Link href="/become-a-tutor">
+              <Link href="../tutor-flow/tutor-registration">
                 <button className="hidden h-10 rounded-xl bg-gray-100 px-4 text-sm font-bold text-gray-800 transition-colors hover:bg-gray-200 sm:block">
                   Become a Tutor
                 </button>

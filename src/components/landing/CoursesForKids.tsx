@@ -1,42 +1,44 @@
 import { BookText, Calculator, Code2, Languages } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 import Button from '../ui/Button';
 
-// 1. Added a 'justify' property to control card alignment
 const kidsCourses = [
   {
     id: 1,
-    title: 'Spoken English Program',
-    classRange: 'Class 1 - 6',
-    description: 'Master fluency in English speaking',
+    title: 'Primary Section',
+    classRange: 'Class 1 - 5',
+    description: 'Unlock the Joy of Learning!',
     icon: BookText,
     colors: {
       bg: 'bg-rose-50',
       text: 'text-rose-600',
       iconBg: 'bg-rose-100',
     },
-    justify: 'md:justify-self-end', // Align left-side cards to the right
+    justify: 'md:justify-self-end',
+    link: '/kid-courses/primary-section',
   },
   {
     id: 2,
-    title: 'Learn English',
-    classRange: 'Class LKG - 5',
-    description: 'Level based holistic English Program',
+    title: 'Junior Section',
+    classRange: 'Class 6 - 8',
+    description: 'Build strong Academic Foundation!',
     icon: Languages,
     colors: {
       bg: 'bg-yellow-50',
       text: 'text-yellow-600',
       iconBg: 'bg-yellow-100',
     },
-    justify: 'md:justify-self-start', // Align right-side cards to the left
+    justify: 'md:justify-self-start',
+    link: '/kid-courses/junior-section',
   },
   {
     id: 3,
-    title: 'Learn math',
-    classRange: 'Class 1 to 5',
-    description: 'Turn your child into a Math wizard',
+    title: 'Computer Learning',
+    classRange: 'Class 1 to 8',
+    description: 'Learn computer in fun and Easy Way!',
     icon: Calculator,
     colors: {
       bg: 'bg-blue-50',
@@ -44,12 +46,13 @@ const kidsCourses = [
       iconBg: 'bg-blue-100',
     },
     justify: 'md:justify-self-end',
+    link: '/kid-courses/computer-learning',
   },
   {
     id: 4,
-    title: 'Coding classes',
+    title: 'Spoken English & Communication Skills',
     classRange: 'Class 1 - 8',
-    description: 'Learn to build apps and games, be future ready',
+    description: 'Speak Confidently and Express Freely!',
     icon: Code2,
     colors: {
       bg: 'bg-purple-50',
@@ -57,18 +60,19 @@ const kidsCourses = [
       iconBg: 'bg-purple-100',
     },
     justify: 'md:justify-self-start',
+    link: '/kid-courses/spoken-english',
   },
 ];
 
-// --- Main Component ---
 const CoursesForKids = () => {
   return (
-    <div className="mx-auto max-w-6xl p-6 py-16">
+    <div id="kids-courses" className="mx-auto max-w-6xl p-6 py-16">
       <h2 className="mb-12 text-center text-3xl font-bold text-gray-800 lg:text-left">
         Courses for <span className="text-primary">Kids</span>
       </h2>
 
       <div className="relative">
+        {/* Center image */}
         <div className="hidden lg:absolute lg:left-1/2 lg:top-1/2 lg:z-10 lg:block lg:-translate-x-1/2 lg:-translate-y-1/2">
           <div className="relative size-80 overflow-hidden rounded-full border-8 border-white shadow-lg">
             <div className="absolute inset-0 -m-4 scale-110 rounded-full bg-pink-100/50"></div>
@@ -85,7 +89,6 @@ const CoursesForKids = () => {
           {kidsCourses.map((course) => {
             const Icon = course.icon;
             return (
-              // 2. Added max-width and dynamic justify classes
               <div
                 key={course.id}
                 className={`w-full max-w-sm rounded-2xl p-6 ${course.colors.bg} ${course.justify}`}
@@ -104,9 +107,11 @@ const CoursesForKids = () => {
                       {course.title}
                     </h3>
                     <p className="text-gray-600">{course.description}</p>
-                    <Button variant="dark" className="mt-4">
-                      Explore
-                    </Button>
+                    <Link href={course.link}>
+                      <Button variant="dark" className="mt-4">
+                        Explore
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>

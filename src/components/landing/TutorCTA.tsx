@@ -50,8 +50,9 @@ const TutorCTA = () => {
             Looking to <span className="text-primary">Teach?</span>
           </h2>
           <p className="max-w-md text-lg text-gray-600">
-            Join UrbanPro and connect with more than 55 Lakh students on the
-            platform. Create a strong profile and grow your network.
+            Join TutorEdge and connect with hundreds of students in your area.
+            Share your knowledge, grow your teaching career, and earn from the
+            comfort of your home.
           </p>
           <Button className="mt-2 px-8 py-3 text-base">
             Signup as a Tutor

@@ -1,3 +1,5 @@
+// src/pages/login.tsx
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -8,45 +10,77 @@ import AuthLayout from '@/layouts/AuthLayout';
 import apiClient from '@/lib/apiClient'; // Import your API client
 import { useAuthStore } from '@/stores/useAuthStore';
 
-const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null); // State to hold login errors
+// 1. Define our roles
+const roles = ['Parent', 'Tutor', 'Admin'];
 
-  // This gets the 'login' action from your Zustand store
+const LoginPage = () => {
+  // 2. Add state for the active tab
+  const [activeRole, setActiveRole] = useState(roles[0]); // Default to Parent
+
+  // 3. Rename state to be generic
+  const [emailOrUsername, setEmailOrUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
+
   const { login } = useAuthStore();
   const router = useRouter();
 
+  // 4. Create a dynamic label for the first input
+  const mainInputLabel = activeRole === 'Admin' ? 'Username' : 'Email';
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null); // Clear previous errors
+    setError(null);
+    setIsLoading(true);
+
+    let endpoint = '';
+    let payload = {};
+    let dashboardUrl = '/';
+
+    // 5. Configure API call based on the active role
+    switch (activeRole) {
+      case 'Parent':
+        endpoint = '/auth/parent/login';
+        payload = { email: emailOrUsername, password };
+        dashboardUrl = '/parent/dashboard'; // As seen in login.tsx
+        break;
+      case 'Tutor':
+        endpoint = '/auth/tutor/login'; // Assuming this is the endpoint
+        payload = { email: emailOrUsername, password };
+        dashboardUrl = '/tutor/dashboard'; // As seen in NavBar.tsx
+        break;
+      case 'Admin':
+        endpoint = '/auth/admin/login'; // From API docs
+        // Use 'username' key as required by the API
+        payload = { username: emailOrUsername, password };
+        dashboardUrl = '/admin/dashboard'; // As seen in NavBar.tsx
+        break;
+      default:
+        setError('Invalid role selected');
+        setIsLoading(false);
+        return;
+    }
 
     try {
-      // 1. CHANGED: Call the parent login endpoint from your docs
-      const response = await apiClient.post('/auth/parent/login', {
-        email,
-        password,
-      });
-
-      // 2. UPDATED: Get the full 'user' object and 'token' from the backend response
-      // (This assumes your API returns { user: {...}, token: '...' } on success)
+      // 6. Call the dynamic endpoint with the correct payload
+      const response = await apiClient.post(endpoint, payload);
       const { user, token } = response.data;
 
-      // 3. UPDATED: Call your Zustand 'login' action with the user object and token
-      // This will save the user's login state globally
-      login(user, token);
+      // 7. Check if we got the expected data
+      if (!user || !token) {
+        throw new Error('Invalid login response from server.');
+      }
 
-      // 4. CHANGED: Redirect directly to the parent dashboard on success
-      router.push('/parent/dashboard');
+      login(user, token);
+      router.push(dashboardUrl); // Go to the correct dashboard
     } catch (err: any) {
-      // Axios error handling
       if (err.response) {
-        // The server responded with an error (e.g., "Invalid credentials")
-        setError(err.response.data.message || 'Invalid email or password');
+        setError(err.response.data.message || 'Invalid credentials');
       } else {
-        // Other errors (e.g., network error)
         setError('Login failed. Please try again.');
       }
+      setIsLoading(false);
     }
   };
 
@@ -54,18 +88,48 @@ const LoginPage = () => {
     <AuthLayout
       title="Login"
       subtitle="Login to access your account"
-      illustrationUrl="/images/login-flow/login.png" // This path is correct
+      illustrationUrl="/images/login-flow/login.png"
     >
+      {/* 8. Add Tabs for Role Selection */}
+      <div className="mb-4 flex w-full rounded-lg bg-gray-100 p-1">
+        {roles.map((role) => (
+          <button
+            key={role}
+            type="button"
+            onClick={() => {
+              setActiveRole(role);
+              setError(null); // Clear errors on tab switch
+            }}
+            className={`w-full rounded-md py-2 text-sm font-medium transition-colors
+              ${
+                activeRole === role
+                  ? 'bg-white text-gray-800 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }
+            `}
+          >
+            {role}
+          </button>
+        ))}
+      </div>
+
       <form onSubmit={handleLogin} className="space-y-4">
         <div>
-          <label className="text-sm font-medium text-gray-700">Email</label>
+          {/* 9. Use the dynamic label */}
+          <label className="text-sm font-medium text-gray-700">
+            {mainInputLabel}
+          </label>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            // 10. Use 'text' type for flexibility (handles email or username)
+            type="text"
+            value={emailOrUsername}
+            onChange={(e) => setEmailOrUsername(e.target.value)}
             className="mt-1 w-full rounded-lg border-gray-300 py-3"
-            placeholder="john.doe@gmail.com"
+            placeholder={
+              activeRole === 'Admin' ? 'admin_username' : 'john.doe@gmail.com'
+            }
             required
+            disabled={isLoading}
           />
         </div>
         <PasswordInput
@@ -73,9 +137,9 @@ const LoginPage = () => {
           placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          disabled={isLoading}
         />
 
-        {/* Error message will display here if login fails */}
         {error && (
           <div className="rounded-md bg-red-50 p-3 text-center text-sm text-red-700">
             {error}
@@ -88,6 +152,7 @@ const LoginPage = () => {
               type="checkbox"
               id="remember"
               className="rounded border-gray-300"
+              disabled={isLoading}
             />
             <label htmlFor="remember" className="text-gray-600">
               Remember me
@@ -99,29 +164,13 @@ const LoginPage = () => {
             </span>
           </Link>
         </div>
-        <Button type="submit" className="h-12 w-full">
-          Login
+
+        <Button type="submit" className="h-12 w-full" disabled={isLoading}>
+          {isLoading ? 'Logging in...' : 'Login'}
         </Button>
-        <div className="relative my-4">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-gray-300" />
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="bg-white px-2 text-gray-500">Or login with</span>
-          </div>
-        </div>
-        <Button
-          type="button"
-          variant="dark"
-          className="h-12 w-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-        >
-          <img
-            src="https://www.google.com/favicon.ico"
-            alt="Google"
-            className="mr-2 size-5"
-          />
-          Login with Google
-        </Button>
+
+        {/* ... (Rest of your form, e.g., 'Or login with' and social buttons) ... */}
+
         <p className="text-center text-sm text-gray-600">
           Don&apos;t have an account?
           <Link href="/signup">

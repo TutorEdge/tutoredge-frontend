@@ -11,9 +11,9 @@ import NavBar from '@/components/navbar/NavBar';
 
 // This data will eventually come from a CMS or your backend API
 const heroData = {
-  title: 'Join Live Online or Offline Classes with the Best Tutors',
-  subtitle:
-    'Trusted by 1000+ parents. Safe, verified tutors. Easy demo booking.',
+  title:
+    'Learn from expert tutors - personalized for every student with TutorEdge',
+  subtitle: 'Trusted by 5000+ parents last year.',
   ctaText: 'Book a Free Demo',
   imageUrl: '/images/heroImage.png',
 };

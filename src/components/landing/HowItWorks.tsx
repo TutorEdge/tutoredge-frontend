@@ -1,72 +1,62 @@
-import { CalendarCheck, CreditCard, MonitorPlay } from 'lucide-react';
 import React from 'react';
-
-import Button from '../ui/Button';
 
 const stepsData = [
   {
     id: 1,
-    icon: CalendarCheck,
-    title: 'Book a Demo',
-    description: 'Book a Free Demo Class with a Tutor.',
+    img: 'images/how-it-works/demo.svg',
+    title: '1 to 3 Tutors give a demo session to your child',
+    color: 'bg-yellow-400',
   },
   {
     id: 2,
-    icon: MonitorPlay,
-    title: 'Join LIVE Demo Class',
-    description: 'Attend the demo class as scheduled.',
+    img: 'images/how-it-works/selection.svg',
+    title: 'Parents select the best tutor based on demo',
+    color: 'bg-pink-400',
   },
   {
     id: 3,
-    icon: CreditCard,
-    title: 'Pay and Start',
-    description: 'Use TutorEdge SecurePay to pay and start your Classes.',
+    img: 'images/how-it-works/test.svg',
+    title: 'Tutor conducts monthly test series on our platform',
+    color: 'bg-blue-400',
+  },
+  {
+    id: 4,
+    img: 'images/how-it-works/analytics.svg',
+    title: 'Student’s scorecard displayed on dashboard',
+    color: 'bg-green-400',
   },
 ];
 
 const HowItWorks = () => {
   return (
-    // 3. Changed max-w-5xl to max-w-6xl for consistency
-    <div className="mx-auto max-w-6xl p-6 py-16">
-      {/* 1. Removed 'text-center' to align the title to the left */}
-      <h2 className="mb-16 text-3xl font-bold text-gray-800">
-        How it <span className="text-primary">works!</span>
+    <div className="mx-auto max-w-7xl px-6 py-20">
+      <h2 className="mb-16 text-4xl font-extrabold text-gray-900">
+        Our <span className="text-primary">Step-by-Step</span> Learning Process
       </h2>
 
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
-        {stepsData.map((step, index) => {
-          const Icon = step.icon;
-          return (
-            <div
-              key={step.id}
-              className="relative flex flex-col items-center text-center"
-            >
-              {/* 2. Shortened the line to create space around the numbers */}
-              {index < stepsData.length - 1 && (
-                <div className="absolute left-[62%] top-5 hidden h-0.5 w-[90%] bg-gray-200 md:block" />
-              )}
-
-              {/* Numbered Circle (no changes needed here) */}
-              <div className="relative z-10 flex size-10 items-center justify-center rounded-full bg-gray-100 font-bold text-gray-600">
-                {step.id}
-              </div>
-
-              <div className="my-6 flex size-32 items-center justify-center rounded-full bg-teal-100">
-                <Icon className="size-16 text-teal-500" />
-              </div>
-
-              <h3 className="mb-2 text-xl font-bold text-gray-900">
-                {step.title}
-              </h3>
-              <p className="max-w-xs text-gray-600">{step.description}</p>
+      <div className="flex flex-col items-center gap-12 md:flex-row md:justify-between">
+        {stepsData.map((step, index) => (
+          <div
+            key={step.id}
+            className={`relative flex w-full max-w-sm flex-col items-center justify-center rounded-3xl ${step.color} p-8 shadow-xl transition-transform hover:scale-105 hover:shadow-2xl md:w-1/4`}
+          >
+            <div className="mb-4 flex justify-center">
+              <img
+                src={step.img}
+                alt={step.title}
+                className="size-32 object-contain drop-shadow-md"
+              />
             </div>
-          );
-        })}
-      </div>
 
-      {/* 3. Used flexbox to properly center the button */}
-      <div className="mt-16 flex justify-center">
-        <Button>Get Started!</Button>
+            <p className="text-center text-lg font-semibold leading-snug text-white">
+              {step.title}
+            </p>
+
+            {index < stepsData.length - 1 && (
+              <div className="absolute right-[-45px] top-1/2 hidden h-1 w-10 -translate-y-1/2 bg-gray-300 md:block"></div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

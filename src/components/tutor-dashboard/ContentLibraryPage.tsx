@@ -1,48 +1,126 @@
-import { FileQuestion, FileText, MoreVertical } from 'lucide-react';
+import { FileQuestion, FileText, Pencil } from 'lucide-react'; // <-- Added Pencil, removed MoreVertical
 import React, { useState } from 'react';
 
 import Button from '../ui/Button';
-import CreateAssignmentModal from './CreateAssignmentModal'; // Import the new modals
+import CreateAssignmentModal from './CreateAssignmentModal';
 import CreateQuizModal from './CreateQuizModal';
+import EditAssignmentModal from './EditAssignmentModal'; // <-- 1. Import new modal
+import EditQuizModal from './EditQuizModal'; // <-- 1. Import new modal
 
-const mockAssignments = [
+// --- Types (Copied from your new modal files for this page) ---
+// These types are needed to manage the state of the selected item.
+type Attachment = {
+  id: string;
+  fileName: string;
+  url: string;
+};
+
+type Assignment = {
+  id: string;
+  title: string;
+  subject: string;
+  classGrade: string;
+  instructions: string;
+  attachments: Attachment[];
+  dueDate: string; // 'YYYY-MM-DD'
+  allowOnlineSubmissions: boolean;
+};
+
+type Question = {
+  id: string;
+  questionText: string;
+  type: 'Multiple Choice' | 'True/False' | 'Short Answer';
+  options?: string[];
+  correctAnswerIndex?: number;
+};
+
+type Quiz = {
+  id: string;
+  title: string;
+  subject: string;
+  classGrade: string;
+  instructions: string;
+  questions: Question[];
+};
+
+// --- Mock Data (Updated to match new types) ---
+const mockAssignments: Assignment[] = [
   {
     id: 'a1',
     title: 'Algebra Worksheet 2',
     subject: 'Mathematics',
-    created: '2025-09-15',
+    classGrade: 'Grade 9',
+    instructions: 'Please complete all problems on page 2.',
+    attachments: [
+      { id: 'att1', fileName: 'math_problems.pdf', url: '/files/math.pdf' },
+      { id: 'att2', fileName: 'solutions.pdf', url: '/files/solutions.pdf' },
+    ],
+    dueDate: '2025-09-25',
+    allowOnlineSubmissions: true,
   },
   {
     id: 'a2',
     title: 'Photosynthesis Lab Report',
     subject: 'Biology',
-    created: '2025-09-10',
-  },
-  {
-    id: 'a3',
-    title: 'Essay on The Great Gatsby',
-    subject: 'English',
-    created: '2025-09-05',
+    classGrade: 'Grade 10',
+    instructions: 'Follow the rubric attached.',
+    attachments: [
+      { id: 'att3', fileName: 'lab_rubric.pdf', url: '/files/rubric.pdf' },
+    ],
+    dueDate: '2025-09-22',
+    allowOnlineSubmissions: true,
   },
 ];
 
-const mockQuizzes = [
+const mockQuizzes: Quiz[] = [
   {
     id: 'q1',
     title: 'Chapter 5 Biology Quiz',
     subject: 'Biology',
-    created: '2025-09-12',
+    classGrade: 'Grade 10',
+    instructions: '30 minutes, no notes.',
+    questions: [
+      {
+        id: 'q1-1',
+        questionText: 'What is the powerhouse of the cell?',
+        type: 'Multiple Choice',
+      },
+      {
+        id: 'q1-2',
+        questionText: 'True or False: Plants are autotrophs.',
+        type: 'True/False',
+      },
+    ],
   },
   {
     id: 'q2',
     title: 'Calculus Derivatives Test',
     subject: 'Mathematics',
-    created: '2025-09-08',
+    classGrade: 'Grade 12',
+    instructions: 'Show your work.',
+    questions: [
+      {
+        id: 'q2-1',
+        questionText: 'What is the derivative of x^2?',
+        type: 'Short Answer',
+      },
+      {
+        id: 'q2-2',
+        questionText: 'What is the derivative of sin(x)?',
+        type: 'Short Answer',
+      },
+    ],
   },
 ];
 
-// --- Sub-Component for the data tables ---
-const ContentTable = ({ data }: { data: any[] }) => (
+// --- Sub-Component for the data tables (Updated) ---
+const ContentTable = ({
+  data,
+  onEdit,
+}: {
+  data: any[];
+  onEdit: (item: any) => void; // <-- 3. Accept handler
+}) => (
   <div className="overflow-hidden rounded-xl border bg-white shadow-sm">
     <table className="w-full text-sm">
       <thead className="bg-gray-50 text-left">
@@ -58,10 +136,19 @@ const ContentTable = ({ data }: { data: any[] }) => (
           <tr key={item.id} className="border-t">
             <td className="p-4 font-medium text-gray-800">{item.title}</td>
             <td className="p-4 text-gray-600">{item.subject}</td>
-            <td className="p-4 text-gray-600">{item.created}</td>
+            <td className="p-4 text-gray-600">
+              {
+                /* Use a real date field if available, like 'created' or 'dueDate' */
+                item.created || item.dueDate
+              }
+            </td>
             <td className="p-4">
-              <button className="text-gray-400 hover:text-gray-700">
-                <MoreVertical size={18} />
+              {/* 3. Pass item to handler */}
+              <button
+                onClick={() => onEdit(item)}
+                className="text-gray-400 hover:text-blue-600"
+              >
+                <Pencil size={18} />
               </button>
             </td>
           </tr>
@@ -71,16 +158,37 @@ const ContentTable = ({ data }: { data: any[] }) => (
   </div>
 );
 
+// --- Main Page Component ---
 const ContentLibraryPage = () => {
   const [activeTab, setActiveTab] = useState('Assignments');
+
+  // State for Create Modals
   const [isAssignmentModalOpen, setIsAssignmentModalOpen] = useState(false);
   const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
+
+  // 2. Add state for Edit Modals
+  const [isEditAssignmentModalOpen, setIsEditAssignmentModalOpen] =
+    useState(false);
+  const [isEditQuizModalOpen, setIsEditQuizModalOpen] = useState(false);
+  const [selectedAssignment, setSelectedAssignment] =
+    useState<Assignment | null>(null);
+  const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
+
   const tabs = ['Assignments', 'Quizzes'];
+
+  // 3. Create handlers to open edit modals
+  const handleEditAssignment = (assignment: Assignment) => {
+    setSelectedAssignment(assignment);
+    setIsEditAssignmentModalOpen(true);
+  };
+
+  const handleEditQuiz = (quiz: Quiz) => {
+    setSelectedQuiz(quiz);
+    setIsEditQuizModalOpen(true);
+  };
 
   return (
     <>
-      {' '}
-      {/* Use a fragment to wrap the page and the modals */}
       <div className="flex flex-col gap-6">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
           <div>
@@ -124,17 +232,24 @@ const ContentLibraryPage = () => {
           </nav>
         </div>
 
-        {/* --- THIS IS THE MISSING PART --- */}
         {/* Conditionally render the table based on the active tab */}
         <div className="mt-4">
           {activeTab === 'Assignments' && (
-            <ContentTable data={mockAssignments} />
+            <ContentTable
+              data={mockAssignments}
+              onEdit={handleEditAssignment} // <-- 3. Pass handler
+            />
           )}
-          {activeTab === 'Quizzes' && <ContentTable data={mockQuizzes} />}
+          {activeTab === 'Quizzes' && (
+            <ContentTable
+              data={mockQuizzes}
+              onEdit={handleEditQuiz} // <-- 3. Pass handler
+            />
+          )}
         </div>
-        {/* ------------------------------- */}
       </div>
-      {/* Modals are rendered here but are invisible until their state is true */}
+
+      {/* Create Modals */}
       <CreateAssignmentModal
         isOpen={isAssignmentModalOpen}
         setIsOpen={setIsAssignmentModalOpen}
@@ -142,6 +257,18 @@ const ContentLibraryPage = () => {
       <CreateQuizModal
         isOpen={isQuizModalOpen}
         setIsOpen={setIsQuizModalOpen}
+      />
+
+      {/* 4. Render the new Edit Modals */}
+      <EditAssignmentModal
+        isOpen={isEditAssignmentModalOpen}
+        setIsOpen={setIsEditAssignmentModalOpen}
+        assignment={selectedAssignment}
+      />
+      <EditQuizModal
+        isOpen={isEditQuizModalOpen}
+        setIsOpen={setIsEditQuizModalOpen}
+        quiz={selectedQuiz}
       />
     </>
   );
