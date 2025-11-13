@@ -38,6 +38,14 @@ const CoursesForKids = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white px-6 py-16">
+        {/* 🔙 Back Button */}
+      <button
+        onClick={() => router.push("/")}
+        className="mb-8 rounded-xl bg-white px-5 py-2 font-semibold text-blue-700 shadow hover:bg-blue-100 transition"
+      >
+        ← Back to Home
+      </button>
+
       <div className="mb-12 text-center">
         <h1 className="mb-3 text-5xl font-extrabold text-blue-700">
           🌈 Courses for Kids
