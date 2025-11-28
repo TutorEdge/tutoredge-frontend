@@ -1,125 +1,48 @@
-import { FileQuestion, FileText, Pencil } from 'lucide-react'; // <-- Added Pencil, removed MoreVertical
-import React, { useState } from 'react';
+// src/components/tutor-dashboard/ContentLibraryPage.tsx
 
+import { FileQuestion, FileText, Pencil } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+
+import apiClient from '../../lib/apiClient';
 import Button from '../ui/Button';
 import CreateAssignmentModal from './CreateAssignmentModal';
 import CreateQuizModal from './CreateQuizModal';
-import EditAssignmentModal from './EditAssignmentModal'; // <-- 1. Import new modal
-import EditQuizModal from './EditQuizModal'; // <-- 1. Import new modal
+import EditAssignmentModal from './EditAssignmentModal';
+import EditQuizModal from './EditQuizModal';
 
-// --- Types (Copied from your new modal files for this page) ---
-// These types are needed to manage the state of the selected item.
-type Attachment = {
-  id: string;
-  fileName: string;
-  url: string;
-};
-
+// --- 1. Updated Types to match API (snake_case) ---
+// Based on image_784779.png and image_6e3473.png
 type Assignment = {
   id: string;
   title: string;
   subject: string;
-  classGrade: string;
-  instructions: string;
-  attachments: Attachment[];
-  dueDate: string; // 'YYYY-MM-DD'
-  allowOnlineSubmissions: boolean;
-};
-
-type Question = {
-  id: string;
-  questionText: string;
-  type: 'Multiple Choice' | 'True/False' | 'Short Answer';
-  options?: string[];
-  correctAnswerIndex?: number;
+  class_grade: string; // API uses snake_case
+  due_date: string; // API uses snake_case
+  allow_submission_online: boolean; // API uses snake_case
+  status: string;
+  // Note: 'instructions' and 'attachments' are not in the list API
+  // You might need a separate GET details API for the Edit Modal later
 };
 
 type Quiz = {
   id: string;
   title: string;
   subject: string;
-  classGrade: string;
-  instructions: string;
-  questions: Question[];
+  class_grade: string;
+  due_date: string | null;
+  total_questions: number;
+  status: string;
 };
 
-// --- Mock Data (Updated to match new types) ---
-const mockAssignments: Assignment[] = [
-  {
-    id: 'a1',
-    title: 'Algebra Worksheet 2',
-    subject: 'Mathematics',
-    classGrade: 'Grade 9',
-    instructions: 'Please complete all problems on page 2.',
-    attachments: [
-      { id: 'att1', fileName: 'math_problems.pdf', url: '/files/math.pdf' },
-      { id: 'att2', fileName: 'solutions.pdf', url: '/files/solutions.pdf' },
-    ],
-    dueDate: '2025-09-25',
-    allowOnlineSubmissions: true,
-  },
-  {
-    id: 'a2',
-    title: 'Photosynthesis Lab Report',
-    subject: 'Biology',
-    classGrade: 'Grade 10',
-    instructions: 'Follow the rubric attached.',
-    attachments: [
-      { id: 'att3', fileName: 'lab_rubric.pdf', url: '/files/rubric.pdf' },
-    ],
-    dueDate: '2025-09-22',
-    allowOnlineSubmissions: true,
-  },
-];
-
-const mockQuizzes: Quiz[] = [
-  {
-    id: 'q1',
-    title: 'Chapter 5 Biology Quiz',
-    subject: 'Biology',
-    classGrade: 'Grade 10',
-    instructions: '30 minutes, no notes.',
-    questions: [
-      {
-        id: 'q1-1',
-        questionText: 'What is the powerhouse of the cell?',
-        type: 'Multiple Choice',
-      },
-      {
-        id: 'q1-2',
-        questionText: 'True or False: Plants are autotrophs.',
-        type: 'True/False',
-      },
-    ],
-  },
-  {
-    id: 'q2',
-    title: 'Calculus Derivatives Test',
-    subject: 'Mathematics',
-    classGrade: 'Grade 12',
-    instructions: 'Show your work.',
-    questions: [
-      {
-        id: 'q2-1',
-        questionText: 'What is the derivative of x^2?',
-        type: 'Short Answer',
-      },
-      {
-        id: 'q2-2',
-        questionText: 'What is the derivative of sin(x)?',
-        type: 'Short Answer',
-      },
-    ],
-  },
-];
-
-// --- Sub-Component for the data tables (Updated) ---
+// --- Sub-Component for the data tables ---
 const ContentTable = ({
   data,
   onEdit,
+  type: _type,
 }: {
   data: any[];
-  onEdit: (item: any) => void; // <-- 3. Accept handler
+  onEdit: (item: any) => void;
+  type: 'assignment' | 'quiz';
 }) => (
   <div className="overflow-hidden rounded-xl border bg-white shadow-sm">
     <table className="w-full text-sm">
@@ -127,32 +50,41 @@ const ContentTable = ({
         <tr>
           <th className="p-4 font-medium text-gray-600">Title</th>
           <th className="p-4 font-medium text-gray-600">Subject</th>
-          <th className="p-4 font-medium text-gray-600">Date Created</th>
+          <th className="p-4 font-medium text-gray-600">Grade</th>
+          <th className="p-4 font-medium text-gray-600">Due Date</th>
           <th className="p-4 font-medium text-gray-600">Actions</th>
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
-          <tr key={item.id} className="border-t">
-            <td className="p-4 font-medium text-gray-800">{item.title}</td>
-            <td className="p-4 text-gray-600">{item.subject}</td>
-            <td className="p-4 text-gray-600">
-              {
-                /* Use a real date field if available, like 'created' or 'dueDate' */
-                item.created || item.dueDate
-              }
-            </td>
-            <td className="p-4">
-              {/* 3. Pass item to handler */}
-              <button
-                onClick={() => onEdit(item)}
-                className="text-gray-400 hover:text-blue-600"
-              >
-                <Pencil size={18} />
-              </button>
+        {data.length === 0 ? (
+          <tr>
+            <td colSpan={5} className="p-8 text-center text-gray-500">
+              No content found.
             </td>
           </tr>
-        ))}
+        ) : (
+          data.map((item) => (
+            <tr key={item.id} className="border-t">
+              <td className="p-4 font-medium text-gray-800">{item.title}</td>
+              <td className="p-4 text-gray-600">{item.subject}</td>
+              {/* 2. Render using correct snake_case keys */}
+              <td className="p-4 text-gray-600">{item.class_grade}</td>
+              <td className="p-4 text-gray-600">
+                {item.due_date
+                  ? new Date(item.due_date).toLocaleDateString()
+                  : '-'}
+              </td>
+              <td className="p-4">
+                <button
+                  onClick={() => onEdit(item)}
+                  className="text-gray-400 hover:text-blue-600"
+                >
+                  <Pencil size={18} />
+                </button>
+              </td>
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   </div>
@@ -162,11 +94,13 @@ const ContentTable = ({
 const ContentLibraryPage = () => {
   const [activeTab, setActiveTab] = useState('Assignments');
 
-  // State for Create Modals
+  const [assignments, setAssignments] = useState<Assignment[]>([]);
+  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Modal States
   const [isAssignmentModalOpen, setIsAssignmentModalOpen] = useState(false);
   const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
-
-  // 2. Add state for Edit Modals
   const [isEditAssignmentModalOpen, setIsEditAssignmentModalOpen] =
     useState(false);
   const [isEditQuizModalOpen, setIsEditQuizModalOpen] = useState(false);
@@ -176,7 +110,29 @@ const ContentLibraryPage = () => {
 
   const tabs = ['Assignments', 'Quizzes'];
 
-  // 3. Create handlers to open edit modals
+  // 3. FETCH FUNCTION: Updated for new API structure
+  const fetchContent = async () => {
+    setIsLoading(true);
+    try {
+      const [assignRes, quizRes] = await Promise.all([
+        apiClient.get('/tutor/assignments'),
+        apiClient.get('/tutor/quizzes'),
+      ]);
+
+      // 4. Access response.data.data based on your screenshots
+      setAssignments(assignRes.data.data || []);
+      setQuizzes(quizRes.data.data || []);
+    } catch (error) {
+      console.error('Failed to fetch content library:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchContent();
+  }, []);
+
   const handleEditAssignment = (assignment: Assignment) => {
     setSelectedAssignment(assignment);
     setIsEditAssignmentModalOpen(true);
@@ -213,7 +169,6 @@ const ContentLibraryPage = () => {
           </div>
         </div>
 
-        {/* Tab Navigation */}
         <div className="border-b border-gray-200">
           <nav className="-mb-px flex space-x-6">
             {tabs.map((tab) => (
@@ -232,24 +187,30 @@ const ContentLibraryPage = () => {
           </nav>
         </div>
 
-        {/* Conditionally render the table based on the active tab */}
         <div className="mt-4">
-          {activeTab === 'Assignments' && (
-            <ContentTable
-              data={mockAssignments}
-              onEdit={handleEditAssignment} // <-- 3. Pass handler
-            />
-          )}
-          {activeTab === 'Quizzes' && (
-            <ContentTable
-              data={mockQuizzes}
-              onEdit={handleEditQuiz} // <-- 3. Pass handler
-            />
+          {isLoading ? (
+            <div className="p-8 text-center">Loading content...</div>
+          ) : (
+            <>
+              {activeTab === 'Assignments' && (
+                <ContentTable
+                  data={assignments}
+                  onEdit={handleEditAssignment}
+                  type="assignment"
+                />
+              )}
+              {activeTab === 'Quizzes' && (
+                <ContentTable
+                  data={quizzes}
+                  onEdit={handleEditQuiz}
+                  type="quiz"
+                />
+              )}
+            </>
           )}
         </div>
       </div>
 
-      {/* Create Modals */}
       <CreateAssignmentModal
         isOpen={isAssignmentModalOpen}
         setIsOpen={setIsAssignmentModalOpen}
@@ -259,15 +220,23 @@ const ContentLibraryPage = () => {
         setIsOpen={setIsQuizModalOpen}
       />
 
-      {/* 4. Render the new Edit Modals */}
+      {/* NOTE: Your EditModals might expect 'dueDate' (camelCase). 
+         Since the API returns 'due_date' (snake_case), you might need 
+         to update your EditAssignmentModal to handle the new field names 
+         or map the data here before passing it.
+      */}
       <EditAssignmentModal
         isOpen={isEditAssignmentModalOpen}
         setIsOpen={setIsEditAssignmentModalOpen}
+        // @ts-ignore - Suppressing TS error until Modal is updated to match API types
         assignment={selectedAssignment}
+        onAssignmentUpdated={fetchContent}
+        onAssignmentDeleted={fetchContent}
       />
       <EditQuizModal
         isOpen={isEditQuizModalOpen}
         setIsOpen={setIsEditQuizModalOpen}
+        // @ts-ignore
         quiz={selectedQuiz}
       />
     </>

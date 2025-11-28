@@ -1,79 +1,110 @@
-import { Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
+// src/components/Footer.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-// --- Data for the Footer Links ---
-const footerLinkColumns = [
-  {
-    title: 'Company',
-    links: [
-      { name: 'About us', href: '/about' },
-      { name: 'Contact us', href: '/contact' },
-      { name: 'Vedantu Blog', href: '#' },
-      { name: 'News', href: '/news' },
-    ],
-  },
-  {
-    title: 'Courses',
-    links: [
-      { name: 'CBSE Tuitions', href: '/courses/cbse' },
-      { name: 'ICSE Tuitions', href: '/courses/icse' },
-      { name: 'JEE (Main & Advanced)', href: '/courses/jee' },
-      { name: 'NEET', href: '/courses/neet' },
-    ],
-  },
-  {
-    title: 'Offline Centers',
-    links: [
-      { name: 'Noida', href: '/centers/noida' },
-      { name: 'Prayagraj', href: '/centers/prayagraj' },
-      { name: 'Lucknow', href: '/centers/lucknow' },
-      { name: 'Kanpur', href: '/centers/kanpur' },
-    ],
-  },
+// --- Data Generation for Service Links (Logic Unchanged) ---
+
+const serviceTypes = [
+  'Home Tutors',
+  'Maths & Science Tutors',
+  'Maths tutors',
+  'female tutor',
+  'Best tuition bureau',
+  'Private tutor',
+  'English tutor',
+  'Chemistry tutor',
+  'Science tutors',
+  'Best teacher',
+  'Science & maths tutor',
+  'Tuition bureau',
+  'Female tutors',
+  'CBSE & ICSE Tutors',
+  'Best home tutor near me',
+  'Home tuition for class 9 & class 10',
 ];
 
-const socialLinks = [
-  { href: '#', icon: Facebook, 'aria-label': 'Facebook' },
-  { href: '#', icon: Linkedin, 'aria-label': 'LinkedIn' },
-  { href: '#', icon: Twitter, 'aria-label': 'Twitter' },
-  { href: '#', icon: Youtube, 'aria-label': 'YouTube' },
+const cities = ['Varanasi', 'Prayagraj', 'Lucknow'];
+
+const generateSlug = (service: string, city: string): string => {
+  return `${service
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-$/, '')}-in-${city.toLowerCase()}`;
+};
+
+const serviceLinks = serviceTypes.flatMap((service) =>
+  cities.map((city) => ({
+    name: `${service} in ${city}`,
+    href: `/services/${generateSlug(service, city)}`,
+  })),
+);
+
+// Distribute the generated links into 3 columns
+const linksPerColumn = Math.ceil(serviceLinks.length / 3);
+const serviceColumns = [
+  serviceLinks.slice(0, linksPerColumn),
+  serviceLinks.slice(linksPerColumn, linksPerColumn * 2),
+  serviceLinks.slice(linksPerColumn * 2),
+];
+
+const companyLinks = [
+  { name: 'About us', href: '/about' },
+  { name: 'Contact us', href: '/contact' },
+  // { name: 'News', href: '/news' },
 ];
 
 // --- Main Component ---
 const Footer = () => {
   return (
     <footer className="bg-slate-800 text-white">
-      <div className="mx-auto max-w-6xl p-6 py-16">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          {/* Logo and Brand Column */}
-          <div className="md:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
-              {/* 1. Increased the logo size */}
+      <div className="mx-auto max-w-7xl p-6 py-16">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Column 1: Logo, Tagline, and Company Links */}
+          <div className="lg:col-span-1">
+            <Link href="/" className="inline-block">
               <Image
                 src="/images/logo.png"
                 alt="TutorEdge Logo"
                 width={150}
                 height={40}
               />
-              {/* 2. Removed the "TutorEdge" text span */}
             </Link>
+            <p className="mt-4 text-sm text-gray-400">
+              Your partner in personalized learning.
+            </p>
+
+            {/* Company Links moved here */}
+            <ul className="mt-6 space-y-3">
+              {companyLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm font-medium text-gray-300 transition-colors hover:text-white hover:underline"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Link Columns */}
-          {footerLinkColumns.map((column) => (
-            <div key={column.title}>
-              <h3 className="font-bold uppercase text-gray-300">
-                {column.title}
+          {/* Columns 2, 3, 4: Service Links */}
+          {serviceColumns.map((links, index) => (
+            <div key={index}>
+              {/* Only show the "Services" title on the first service column (index 0).
+                  For the others, use 'invisible' to keep the vertical alignment/spacing correct. */}
+              <h3
+                className={`text-sm font-semibold uppercase tracking-wider text-gray-400 ${index > 0 ? 'invisible sm:invisible lg:invisible' : ''}`}
+              >
+                Services
               </h3>
-              <ul className="mt-4 space-y-2">
-                {column.links.map((link) => (
+              <ul className="mt-4 space-y-3">
+                {links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 transition-colors hover:text-white"
+                      className="text-sm text-gray-300 transition-colors hover:text-white hover:underline"
                     >
                       {link.name}
                     </Link>
@@ -86,38 +117,10 @@ const Footer = () => {
       </div>
 
       {/* Bottom Section */}
-      <div className="border-t border-slate-700">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 p-6 md:flex-row">
-          <p className="text-sm text-gray-400">
-            © {new Date().getFullYear()} Tutoredge.com. All rights reserved
-          </p>
-          <div className="flex gap-4 text-sm text-gray-400">
-            <Link
-              href="/privacy"
-              className="transition-colors hover:text-white"
-            >
-              Privacy policy
-            </Link>
-            <Link href="/terms" className="transition-colors hover:text-white">
-              Terms and conditions
-            </Link>
-          </div>
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <Link
-                  key={social['aria-label']}
-                  href={social.href}
-                  aria-label={social['aria-label']}
-                  className="text-gray-400 transition-colors hover:text-white"
-                >
-                  <Icon className="size-5" />
-                </Link>
-              );
-            })}
-          </div>
-        </div>
+      <div className="border-t border-slate-700 bg-slate-800 p-8">
+        <p className="text-center text-sm text-gray-400">
+          &copy; {new Date().getFullYear()} TutorEdge. All rights reserved.
+        </p>
       </div>
     </footer>
   );
