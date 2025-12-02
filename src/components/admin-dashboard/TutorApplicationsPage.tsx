@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
-
+import NavBar from '@/components/navbar/NavBar';
 import apiClient from '@/lib/apiClient'; // 1. Import (Path fixed)
 
 // 2. Define type for the application data based on the API
@@ -82,6 +82,7 @@ const TutorApplicationsPage = () => {
 
   return (
     <div className="flex flex-col gap-6">
+      <NavBar/>
       <div>
         <h1 className="text-3xl font-bold text-gray-800">Tutor Applications</h1>
         <p className="mt-1 text-gray-500">

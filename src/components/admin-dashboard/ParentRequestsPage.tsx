@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
-
+import NavBar from '@/components/navbar/NavBar';
 import apiClient from '@/lib/apiClient'; // 1. Import your API client
 
 // 2. Define a type for the API data
@@ -88,6 +88,7 @@ const ParentRequestsPage = () => {
 
   return (
     <div className="flex flex-col gap-6">
+      <NavBar/>
       <h1 className="text-3xl font-bold text-gray-800">Parent Requests</h1>
 
       {/* Filters and Search */}

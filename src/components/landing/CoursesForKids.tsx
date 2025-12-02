@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { BookText, Calculator, Code2, Languages } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,9 +14,9 @@ const kidsCourses = [
     description: 'Unlock the Joy of Learning!',
     icon: BookText,
     colors: {
-      bg: 'bg-rose-50',
+      bg: 'bg-gradient-to-tr from-rose-50 to-rose-100',
       text: 'text-rose-600',
-      iconBg: 'bg-rose-100',
+      iconBg: 'bg-rose-200',
     },
     justify: 'md:justify-self-end',
     link: '/kid-courses/primary-section',
@@ -27,9 +28,9 @@ const kidsCourses = [
     description: 'Build strong Academic Foundation!',
     icon: Languages,
     colors: {
-      bg: 'bg-yellow-50',
+      bg: 'bg-gradient-to-tr from-yellow-50 to-yellow-100',
       text: 'text-yellow-600',
-      iconBg: 'bg-yellow-100',
+      iconBg: 'bg-yellow-200',
     },
     justify: 'md:justify-self-start',
     link: '/kid-courses/junior-section',
@@ -41,9 +42,9 @@ const kidsCourses = [
     description: 'Learn computer in fun and Easy Way!',
     icon: Calculator,
     colors: {
-      bg: 'bg-blue-50',
+      bg: 'bg-gradient-to-tr from-blue-50 to-blue-100',
       text: 'text-blue-600',
-      iconBg: 'bg-blue-100',
+      iconBg: 'bg-blue-200',
     },
     justify: 'md:justify-self-end',
     link: '/kid-courses/computer-learning',
@@ -55,9 +56,9 @@ const kidsCourses = [
     description: 'Speak Confidently and Express Freely!',
     icon: Code2,
     colors: {
-      bg: 'bg-purple-50',
+      bg: 'bg-gradient-to-tr from-purple-50 to-purple-100',
       text: 'text-purple-600',
-      iconBg: 'bg-purple-100',
+      iconBg: 'bg-purple-200',
     },
     justify: 'md:justify-self-start',
     link: '/kid-courses/spoken-english',
@@ -66,16 +67,23 @@ const kidsCourses = [
 
 const CoursesForKids = () => {
   return (
-    <div id="kids-courses" className="mx-auto max-w-6xl p-6 py-16">
+    <div
+      id="kids-courses"
+      className="relative mx-auto max-w-6xl overflow-hidden bg-gradient-to-b from-white to-pink-50 p-6 py-16"
+    >
       <h2 className="mb-12 text-center text-3xl font-bold text-gray-800 lg:text-left">
         Courses for <span className="text-primary">Kids</span>
       </h2>
 
+      {/* Decorative floating shapes */}
+      <div className="absolute left-10 top-10 size-24 animate-pulse rounded-full bg-pink-200 opacity-30"></div>
+      <div className="absolute bottom-20 right-20 size-32 animate-pulse rounded-full bg-yellow-200 opacity-25"></div>
+
       <div className="relative">
         {/* Center image */}
         <div className="hidden lg:absolute lg:left-1/2 lg:top-1/2 lg:z-10 lg:block lg:-translate-x-1/2 lg:-translate-y-1/2">
-          <div className="relative size-80 overflow-hidden rounded-full border-8 border-white shadow-lg">
-            <div className="absolute inset-0 -m-4 scale-110 rounded-full bg-pink-100/50"></div>
+          <div className="relative size-80 overflow-hidden rounded-full border-8 border-white shadow-2xl">
+            <div className="absolute inset-0 -m-4 scale-110 animate-pulse rounded-full bg-pink-100/50"></div>
             <Image
               src="/images/kids-courses-center.png"
               alt="A happy child learning"
@@ -85,17 +93,21 @@ const CoursesForKids = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-36 gap-y-16 md:grid-cols-2">
-          {kidsCourses.map((course) => {
+        <div className="relative z-20 grid grid-cols-1 gap-x-36 gap-y-16 md:grid-cols-2">
+          {kidsCourses.map((course, index) => {
             const Icon = course.icon;
             return (
-              <div
+              <motion.div
                 key={course.id}
-                className={`w-full max-w-sm rounded-2xl p-6 ${course.colors.bg} ${course.justify}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className={`w-full max-w-sm rounded-3xl p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl${course.colors.bg} ${course.justify}`}
               >
                 <div className="flex items-start gap-4">
                   <div
-                    className={`mt-1 shrink-0 rounded-lg p-2 ${course.colors.iconBg}`}
+                    className={`mt-1 shrink-0 rounded-lg p-3 ${course.colors.iconBg} flex items-center justify-center`}
                   >
                     <Icon className={`size-8 ${course.colors.text}`} />
                   </div>
@@ -106,15 +118,18 @@ const CoursesForKids = () => {
                     <h3 className="my-1 text-xl font-bold text-gray-900">
                       {course.title}
                     </h3>
-                    <p className="text-gray-600">{course.description}</p>
+                    <p className="text-gray-700">{course.description}</p>
                     <Link href={course.link}>
-                      <Button variant="dark" className="mt-4">
+                      <Button
+                        variant="dark"
+                        className="mt-4 transition-transform duration-300 hover:scale-105"
+                      >
                         Explore
                       </Button>
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

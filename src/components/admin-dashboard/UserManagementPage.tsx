@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
-
+import NavBar from '@/components/navbar/NavBar';
 // --- Mock Data ---
 const mockTutors = [
   {
@@ -116,6 +116,7 @@ const UserManagementPage = () => {
 
   return (
     <div className="flex flex-col gap-6">
+      <NavBar/>
       <div>
         <h1 className="text-3xl font-bold text-gray-800">User Management</h1>
         <p className="mt-1 text-gray-500">

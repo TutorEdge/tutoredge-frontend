@@ -1,5 +1,5 @@
 import React from 'react';
-
+import NavBar from '@/components/navbar/NavBar';
 import Button from '@/components/ui/Button';
 
 // --- Type Definition for the request data ---
@@ -35,6 +35,7 @@ const ParentRequestDetailPage: React.FC<{ request: ParentRequest }> = ({
 
   return (
     <div className="flex flex-col gap-6">
+      <NavBar/>
       <div>
         <h1 className="text-3xl font-bold text-gray-800">
           Parent Request Details: {request.parent.name}

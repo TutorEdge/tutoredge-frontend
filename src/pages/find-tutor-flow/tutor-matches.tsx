@@ -1,4 +1,5 @@
 // src/pages/find-tutor-flow/tutor-matches.tsx
+
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo, useState } from 'react';
 
@@ -6,13 +7,14 @@ import Button from '../../components/find-tutor-flow/Button';
 import TutorCard from '../../components/find-tutor-flow/TutorCard';
 import apiClient from '../../lib/apiClient';
 
+
 interface ApiTutor {
   _id: string;
   fullName: string;
   email: string;
   subjects: string[];
   yearsOfExperience: number;
-  price: number;
+  price: number; // price per month
   rating: number;
   testimonial: string;
 }
@@ -27,7 +29,7 @@ const TutorMatches: React.FC = () => {
 
   const [filters, setFilters] = useState({
     subject: '',
-    price: 200,
+    price: 12000,
     experience: '',
   });
 
@@ -51,7 +53,7 @@ const TutorMatches: React.FC = () => {
   useEffect(() => {
     setFilters({
       subject: (query.subject as string) || '',
-      price: Number(query.price) || 200,
+      price: Number(query.price) || 12000,
       experience: (query.experience as string) || '',
     });
   }, [query]);
@@ -59,7 +61,7 @@ const TutorMatches: React.FC = () => {
   const filteredTutors = useMemo(() => {
     return allTutors.filter((tutor) => {
       const subjectPref = (query.subject as string) || '';
-      const pricePref = Number(query.price) || 200;
+      const pricePref = Number(query.price) || 15000;
       const expPref = (query.experience as string) || '';
 
       const matchesSubject = subjectPref
@@ -95,95 +97,106 @@ const TutorMatches: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: 900,
-        margin: '3rem auto',
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        padding: 24,
-        boxShadow: '0 0 15px rgba(0,0,0,0.1)',
-      }}
-    >
-      <h3 style={{ marginBottom: 20 }}>Here are your best matches!</h3>
-
-      <div
-        style={{
-          marginBottom: 24,
-          display: 'flex',
-          gap: 16,
-          flexWrap: 'wrap',
-          alignItems: 'center',
-        }}
-      >
-        <select
-          value={filters.subject}
-          onChange={(e) => setFilters({ ...filters, subject: e.target.value })}
-          style={{ padding: 8, borderRadius: 4, border: '1px solid #ccc' }}
-        >
-          <option value="">All Subjects</option>
-          <option value="Maths">Maths</option>
-          <option value="Physics">Physics</option>
-        </select>
-
-        <select
-          value={filters.experience}
-          onChange={(e) =>
-            setFilters({ ...filters, experience: e.target.value })
-          }
-          style={{ padding: 8, borderRadius: 4, border: '1px solid #ccc' }}
-        >
-          <option value="">All Experience</option>
-          <option value="0-1">0-1 years</option>
-          <option value="2-5">2-5 years</option>
-          <option value="5+">5+ years</option>
-        </select>
-
-        <input
-          type="range"
-          min={0}
-          max={200}
-          value={filters.price}
-          onChange={(e) =>
-            setFilters({ ...filters, price: Number(e.target.value) })
-          }
-          style={{ flexGrow: 1 }}
+    <>
+      {/* IMAGE BANNER
+      <div className="w-full">
+        <img
+          src="https://images.unsplash.com/photo-1564683214969-813caedcf1d2?q=80&w=2070&auto=format"
+          alt="Tutoring banner"
+          className="w-full h-60 object-cover rounded-b-3xl shadow-md"
         />
-        <span>Max Price: ${filters.price}</span>
+      </div> */}
 
-        <Button onClick={handleApplyFilters} variant="primary">
-          Apply Filters
-        </Button>
-      </div>
+      <div className="max-w-5xl mx-auto mt-10 bg-white rounded-xl shadow-xl p-10">
+        <h3 className="text-3xl font-bold mb-8 text-gray-900">
+          Your Best Tutor Matches ✨
+        </h3>
 
-      <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-        {isLoading && <p>Loading tutors...</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {/* FILTER SECTION */}
+        <div className="mb-10 flex flex-wrap gap-6 items-center bg-gray-50 p-6 rounded-xl shadow-sm">
+          <select
+            value={filters.subject}
+            onChange={(e) =>
+              setFilters({ ...filters, subject: e.target.value })
+            }
+            className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm"
+          >
+            <option value="">All Subjects</option>
+            <option value="Maths">Maths</option>
+            <option value="Physics">Physics</option>
+          </select>
 
-        {!isLoading && !error && filteredTutors.length === 0 && (
-          <p>No tutors match your criteria. Try expanding your search.</p>
-        )}
+          <select
+            value={filters.experience}
+            onChange={(e) =>
+              setFilters({ ...filters, experience: e.target.value })
+            }
+            className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm"
+          >
+            <option value="">All Experience</option>
+            <option value="0-1">0-1 years</option>
+            <option value="2-5">2-5 years</option>
+            <option value="5+">5+ years</option>
+          </select>
 
-        {!isLoading &&
-          !error &&
-          filteredTutors.map((tutor) => (
-            <TutorCard
-              key={tutor._id}
-              id={tutor._id}
-              name={tutor.fullName}
-              profession={tutor.subjects[0] || 'Tutor'}
-              rating={tutor.rating}
-              reviews={0}
-              description={
-                tutor.testimonial ||
-                `Experienced ${tutor.subjects[0] || 'Tutor'}`
+          {/* PRICE RANGE */}
+          <div className="flex items-center gap-2 flex-grow">
+            <input
+              type="range"
+              min={500}
+              max={12000}
+              step={500}
+              value={filters.price}
+              onChange={(e) =>
+                setFilters({ ...filters, price: Number(e.target.value) })
               }
-              avatarUrl={`https://avatar.vercel.sh/${tutor.email}`}
-              onClick={() => router.push(`/find-tutor/profile/${tutor._id}`)}
+              className="w-full accent-blue-600"
             />
-          ))}
+            <span className="text-gray-700 font-semibold whitespace-nowrap">
+              ₹{filters.price.toLocaleString()}/month
+            </span>
+          </div>
+
+          <Button onClick={handleApplyFilters} variant="primary">
+            Apply Filters
+          </Button>
+        </div>
+
+        {/* TUTORS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {isLoading && <p>Loading tutors...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+
+          {!isLoading && !error && filteredTutors.length === 0 && (
+            <p className="text-gray-600">
+              No tutors match your criteria. Try expanding your search.
+            </p>
+          )}
+
+          {!isLoading &&
+            !error &&
+            filteredTutors.map((tutor) => (
+              <TutorCard
+                key={tutor._id}
+                id={tutor._id}
+                name={tutor.fullName}
+                profession={tutor.subjects[0] || 'Tutor'}
+                rating={tutor.rating}
+                reviews={0}
+                description={
+                  tutor.testimonial ||
+                  `Experienced ${tutor.subjects[0] || 'Tutor'}`
+                }
+                price={`₹${tutor.price.toLocaleString()}/month`}
+                avatarUrl={`https://avatar.vercel.sh/${tutor.email}`}
+                onClick={() =>
+                  router.push(`/find-tutor/profile/${tutor._id}`)
+                }
+              />
+            ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

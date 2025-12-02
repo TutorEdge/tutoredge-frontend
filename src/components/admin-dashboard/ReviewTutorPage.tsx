@@ -1,6 +1,6 @@
 import { Check, X } from 'lucide-react';
 import React from 'react';
-
+import NavBar from '@/components/navbar/NavBar';
 import Button from '@/components/ui/Button'; // Assuming your Button is in src/components/ui
 
 // --- Type Definition for the application data ---
@@ -43,6 +43,7 @@ const ReviewTutorPage: React.FC<{ application: TutorApplication }> = ({
 
   return (
     <div className="flex flex-col gap-8">
+      <NavBar/>
       {/* Header with Action Buttons */}
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div>
